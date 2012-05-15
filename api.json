@@ -1,0 +1,6 @@
+{
+  "endpoints": [
+    "GET    /users"
+  ],
+  "version": "0.1.0"
+}

@@ -1,0 +1,35 @@
+---
+title: Nexus
+brand: nexus.api.globusonline.org
+version: 0.1.0
+---
+
+# Nexus API
+### All API calls start with 
+
+<pre class="base">
+https://nexus.api.globusonline.org/
+</pre>
+
+
+### Format
+
+All calls are returned in ***JSON***
+
+# Users
+
+## GET /users
+
+Retrieves the user object.
+
+#### example request
+
+    $ curl https://nexus.api.globusonline.org/users/trhowe
+
+#### response
+
+    {
+      "username": "trhowe"
+    }
+
+
