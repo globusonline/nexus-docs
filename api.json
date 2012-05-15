@@ -1,7 +1,8 @@
 {
   "endpoints": [
     "GET    /users/<username>",
-    "POST   /Users"
+    "POST   /users",
+    "PUT    /users"
   ],
   "version": "0.1.0"
 }

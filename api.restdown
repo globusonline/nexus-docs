@@ -36,14 +36,14 @@ Retrieves the user object.
       "system_admin": false
     }
 
-## POST /Users
+## POST /users
 
 Create a new user.
 
 #### example request
 
     $ curl -H "Content-Type: application/json" \
-         https://nexus.api.globusonline.org/Users
+         https://nexus.api.globusonline.org/users \
          -d "{
                 "fullname": "User Name",
                 "email": "no-reply@globusonline.org",
@@ -58,10 +58,33 @@ Create a new user.
              "fullname": "User Name",
              "email": "no-reply@globusonline.org",
              "username": "user",
-             "password": "ChangeMe",
              "opt_in": true,
              "system_admin": false,
              "email_validated": false
          }
 
+## PUT /users
+
+Update a user profile.
+
+#### example request
+
+    $ curl -H "Content-Type: application/json" -X PUT \
+      https://nexus.api.globusonline.org/users/user \
+      -d "{
+            "fullname": "New User Name",
+            "email": "no-reply-new@globusonline.org",
+            "opt_in": false
+          }"
+
+#### response
+
+         {
+             "fullname": "New User Name",
+             "email": "no-reply-new@globusonline.org",
+             "username": "user",
+             "opt_in": false,
+             "system_admin": false,
+             "email_validated": false
+         }
 
