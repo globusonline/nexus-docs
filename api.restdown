@@ -18,18 +18,50 @@ All calls are returned in ***JSON***
 
 # Users
 
-## GET /users
+## GET /users/<username>
 
 Retrieves the user object.
 
 #### example request
 
-    $ curl https://nexus.api.globusonline.org/users/trhowe
+    $ curl https://nexus.api.globusonline.org/users/user
 
 #### response
 
     {
-      "username": "trhowe"
+      "username": "user",
+      "email_validated": true,
+      "fullname": "User Name",
+      "email": "no-reply@globusonline.org",
+      "system_admin": false
     }
+
+## POST /Users
+
+Create a new user.
+
+#### example request
+
+    $ curl -H "Content-Type: application/json" \
+         https://nexus.api.globusonline.org/Users
+         -d "{
+                "fullname": "User Name",
+                "email": "no-reply@globusonline.org",
+                "username": "user",
+                "password": "ChangeMe",
+                "opt_in": true
+            }"
+
+#### response
+
+         {
+             "fullname": "User Name",
+             "email": "no-reply@globusonline.org",
+             "username": "user",
+             "password": "ChangeMe",
+             "opt_in": true,
+             "system_admin": false,
+             "email_validated": false
+         }
 
 
