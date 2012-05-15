@@ -15,7 +15,8 @@
 <ul>
   <li><div><a href="#users">Users</a></div>
   <ul>
-    <li><div><a href="#GET-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users</span></span></a></div></li>
+    <li><div><a href="#GET-/users/<username>"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users/<username></span></span></a></div></li>
+    <li><div><a href="#POST-/Users"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/Users</span></span></a></div></li>
   </ul></li>
 </ul>
 
@@ -40,20 +41,54 @@ https://nexus.api.globusonline.org/
 </div>
 <h1 id="users">Users</h1>
 
-<h2 id="GET-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users</span></span></h2>
+<h2 id="GET-/users/<username>">GET /users/<username></h2>
 
 <p>Retrieves the user object.</p>
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl https://nexus.api.globusonline.org/users/trhowe
+<pre class="shell"><code>curl https://nexus.api.globusonline.org/users/user
 </code></pre>
 
 <h4>response</h4>
 
 <pre><code>{
-  "username": "trhowe"
+  "username": "user",
+  "email_validated": true,
+  "fullname": "User Name",
+  "email": "no-reply@globusonline.org",
+  "system_admin": false
 }
+</code></pre>
+
+<h2 id="POST-/Users"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/Users</span></span></h2>
+
+<p>Create a new user.</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -H "Content-Type: application/json" \
+     https://nexus.api.globusonline.org/Users
+     -d "{
+            "fullname": "User Name",
+            "email": "no-reply@globusonline.org",
+            "username": "user",
+            "password": "ChangeMe",
+            "opt_in": true
+        }"
+</code></pre>
+
+<h4>response</h4>
+
+<pre><code>     {
+         "fullname": "User Name",
+         "email": "no-reply@globusonline.org",
+         "username": "user",
+         "password": "ChangeMe",
+         "opt_in": true,
+         "system_admin": false,
+         "email_validated": false
+     }
 </code></pre>
 
     </div>
