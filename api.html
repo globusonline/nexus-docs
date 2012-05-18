@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Nexus</title>
+    <title>Nexus API Documentation</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="media/css/restdown.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="header">
-    <h1>Nexus Documentation</h1>
+    <h1>Nexus API Documentation Documentation</h1>
 </div>
 
     <div id="sidebar">
 <ul>
+  <li><div><a href="#authentication">Authentication</a></div>
+  <ul>
+    <li><div><a href="#POST-/authenticate"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/authenticate</span></span></a></div></li>
+  </ul></li>
   <li><div><a href="#users">Users</a></div>
   <ul>
-    <li><div><a href="#GET-/users/<username>"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users/<username></span></span></a></div></li>
     <li><div><a href="#POST-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/users</span></span></a></div></li>
-    <li><div><a href="#PUT-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">PUT</span> <span class="path">/users</span></span></a></div></li>
+  </ul></li>
+  <li><div><a href="#user">User</a></div>
+  <ul>
+    <li><div><a href="#GET-/users/username"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users/username</span></span></a></div></li>
   </ul></li>
 </ul>
 
@@ -28,95 +34,92 @@
 <div class="intro">
 
 
+<p>Nexus is the service which provides user profiles, groups and other resources for Globusonline.  It also provides the interface for authentication with Globusonline.</p>
+
 <h3>All API calls start with</h3>
 
 <pre class="base">
-https://nexus.api.globusonline.org/
+https://graph.api.globusonline.org
 </pre>
 
 <h3>Format</h3>
 
-<p>All calls are returned in <strong><em>JSON</em></strong></p>
+<p>All responses are <strong>JSON</strong> (that is, except for the current HTML docs that you are reading).</p>
 
 
 </div>
+<h1 id="authentication">Authentication</h1>
+
+<p>Represents an authentication</p>
+
+<h2 id="POST-/authenticate"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/authenticate</span></span></h2>
+
 <h1 id="users">Users</h1>
 
-<h2 id="GET-/users/<username>">GET /users/<username></h2>
+<p>Resource representing all of the users in Globusonline</p>
 
-<p>Retrieves the user object.</p>
+<h2 id="POST-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/users</span></span></h2>
+
+<h3>Successful user creation request</h3>
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl https://nexus.api.globusonline.org/users/user
+<pre class="shell"><code>curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
+        "username": "dummy", 
+        "opt_in": true, 
+        "accept_terms": true, 
+        "fullname": "Dummy User", 
+        "password": "ChangeMe", 
+        "email": "no-reply@globusonline.org"
+    }"
 </code></pre>
 
 <h4>response</h4>
 
 <pre><code>{
-  "username": "user",
-  "email_validated": true,
-  "fullname": "User Name",
-  "email": "no-reply@globusonline.org",
-  "system_admin": false
+    "username": "dummy", 
+    "email_validated": false, 
+    "opt_in": true, 
+    "fullname": "Dummy User", 
+    "email": "no-reply@globusonline.org", 
+    "custom_fields": {}, 
+    "system_admin": false
 }
 </code></pre>
 
-<h2 id="POST-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/users</span></span></h2>
+<hr />
 
-<p>Create a new user.</p>
+<h3>Failed because of existing user</h3>
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -H "Content-Type: application/json" \
-     https://nexus.api.globusonline.org/users \
-     -d "{
-            "fullname": "User Name",
-            "email": "no-reply@globusonline.org",
-            "username": "user",
-            "password": "ChangeMe",
-            "opt_in": true
-        }"
+<pre class="shell"><code>curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
+        "username": "dummy", 
+        "opt_in": true, 
+        "accept_terms": true, 
+        "fullname": "Dummy User", 
+        "password": "ChangeMe", 
+        "email": "no-reply@globusonline.org"
+    }"
 </code></pre>
 
 <h4>response</h4>
 
-<pre><code>     {
-         "fullname": "User Name",
-         "email": "no-reply@globusonline.org",
-         "username": "user",
-         "opt_in": true,
-         "system_admin": false,
-         "email_validated": false
-     }
+<pre><code>{
+    "message": "User could not be registered: Username already exists", 
+    "code": "GENERAL", 
+    "resource": "/users", 
+    "request_id": "aa4d76a8-c7a1-4479-82cc-9a5bf6a1557d"
+}
 </code></pre>
 
-<h2 id="PUT-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">PUT</span> <span class="path">/users</span></span></h2>
+<hr />
 
-<p>Update a user profile.</p>
+<h1 id="user">User</h1>
 
-<h4>example request</h4>
+<p>An individual user profile in Globusonline</p>
 
-<pre class="shell"><code>curl -H "Content-Type: application/json" -X PUT \
-  https://nexus.api.globusonline.org/users/user \
-  -d "{
-        "fullname": "New User Name",
-        "email": "no-reply-new@globusonline.org",
-        "opt_in": false
-      }"
-</code></pre>
-
-<h4>response</h4>
-
-<pre><code>     {
-         "fullname": "New User Name",
-         "email": "no-reply-new@globusonline.org",
-         "username": "user",
-         "opt_in": false,
-         "system_admin": false,
-         "email_validated": false
-     }
-</code></pre>
+<h2 id="GET-/users/username"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users/username</span></span></h2>
 
     </div>
 <script type="text/javascript" charset="utf-8">

@@ -1,90 +1,104 @@
 ---
-title: Nexus
-brand: nexus.api.globusonline.org
-version: 0.1.0
+title: Nexus API Documentation
+mediaroot: media
+markdown2extras: 
 ---
 
 # Nexus API
-### All API calls start with 
+
+Nexus is the service which provides user profiles, groups and other resources for Globusonline.  It also provides the interface for authentication with Globusonline.
+
+
+### All API calls start with
 
 <pre class="base">
-https://nexus.api.globusonline.org/
+https://graph.api.globusonline.org
 </pre>
-
 
 ### Format
 
-All calls are returned in ***JSON***
+All responses are **JSON** (that is, except for the current HTML docs that you are reading).
+
+
+
+# Authentication
+
+Represents an authentication
+
+## POST /authenticate
+
+
+
+
 
 # Users
 
-## GET /users/<username>
-
-Retrieves the user object.
-
-#### example request
-
-    $ curl https://nexus.api.globusonline.org/users/user
-
-#### response
-
-    {
-      "username": "user",
-      "email_validated": true,
-      "fullname": "User Name",
-      "email": "no-reply@globusonline.org",
-      "system_admin": false
-    }
+Resource representing all of the users in Globusonline
 
 ## POST /users
 
-Create a new user.
-
+### Successful user creation request
 #### example request
 
-    $ curl -H "Content-Type: application/json" \
-         https://nexus.api.globusonline.org/users \
-         -d "{
-                "fullname": "User Name",
-                "email": "no-reply@globusonline.org",
-                "username": "user",
-                "password": "ChangeMe",
-                "opt_in": true
-            }"
+    $ curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
+		    "username": "dummy", 
+		    "opt_in": true, 
+		    "accept_terms": true, 
+		    "fullname": "Dummy User", 
+		    "password": "ChangeMe", 
+		    "email": "no-reply@globusonline.org"
+		}"
+
 
 #### response
 
-         {
-             "fullname": "User Name",
-             "email": "no-reply@globusonline.org",
-             "username": "user",
-             "opt_in": true,
-             "system_admin": false,
-             "email_validated": false
-         }
+	{
+	    "username": "dummy", 
+	    "email_validated": false, 
+	    "opt_in": true, 
+	    "fullname": "Dummy User", 
+	    "email": "no-reply@globusonline.org", 
+	    "custom_fields": {}, 
+	    "system_admin": false
+	}
 
-## PUT /users
-
-Update a user profile.
-
+---
+### Failed because of existing user
 #### example request
 
-    $ curl -H "Content-Type: application/json" -X PUT \
-      https://nexus.api.globusonline.org/users/user \
-      -d "{
-            "fullname": "New User Name",
-            "email": "no-reply-new@globusonline.org",
-            "opt_in": false
-          }"
+    $ curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
+		    "username": "dummy", 
+		    "opt_in": true, 
+		    "accept_terms": true, 
+		    "fullname": "Dummy User", 
+		    "password": "ChangeMe", 
+		    "email": "no-reply@globusonline.org"
+		}"
+
 
 #### response
 
-         {
-             "fullname": "New User Name",
-             "email": "no-reply-new@globusonline.org",
-             "username": "user",
-             "opt_in": false,
-             "system_admin": false,
-             "email_validated": false
-         }
+	{
+	    "message": "User could not be registered: Username already exists", 
+	    "code": "GENERAL", 
+	    "resource": "/users", 
+	    "request_id": "aa4d76a8-c7a1-4479-82cc-9a5bf6a1557d"
+	}
+
+---
+
+
+
+
+# User
+
+An individual user profile in Globusonline
+
+## GET /users/username
+
+
+
+
+
+
 

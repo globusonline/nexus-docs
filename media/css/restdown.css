@@ -1,8 +1,78 @@
 
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_0_0.eot");
+  src: url("../font/221E91_0_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_0_0.woff") format("woff"), url("../font/221E91_0_0.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("/GOST../font/221E91_1_0.eot");
+  src: url("../font/221E91_1_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_1_0.woff") format("woff"), url("../font/221E91_1_0.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_2_0.eot");
+  src: url("../font/221E91_2_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_2_0.woff") format("woff"), url("../font/221E91_2_0.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_3_0.eot");
+  src: url("../font/221E91_3_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_3_0.woff") format("woff"), url("../font/221E91_3_0.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_4_0.eot");
+  src: url("../font/221E91_4_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_4_0.woff") format("woff"), url("../font/221E91_4_0.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_5_0.eot");
+  src: url("../font/221E91_5_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_5_0.woff") format("woff"), url("../font/221E91_5_0.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_6_0.eot");
+  src: url("../font/221E91_6_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_6_0.woff") format("woff"), url("../font/221E91_6_0.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_7_0.eot");
+  src: url("../font/221E91_7_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_7_0.woff") format("woff"), url("../font/221E91_7_0.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_8_0.eot");
+  src: url("../font/221E91_8_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_8_0.woff") format("woff"), url("../font/221E91_8_0.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("../font/221E91_9_0.eot");
+  src: url("../font/221E91_9_0.eot?#iefix") format("embedded-opentype"), url("../font/221E91_9_0.woff") format("woff"), url("../font/221E91_9_0.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic; }
 /* ---- general styles */
 
 body {
-  font: 13px "Lucida Grande", "Lucida Sans Unicode", arial, sans-serif;
+  font: 13px MuseoSans, arial, sans-serif;
   line-height: 1.53846; /* 20px */
   color: #4a3f2d;
 }
@@ -46,7 +116,7 @@ hr {
 code,
 pre {
   border: 1px solid #CCCCCC;
-  background: #f2f0ee;
+  background: #B9E5FF;
   -webkit-border-radius:2px;
   -moz-border-radius:2px;
   border-radius:2px;
@@ -123,45 +193,44 @@ pre.shell code::before {
 /* ---- header and sidebar */
 
 #header {
-  background:#C3BDB3;
-  background:#1C313C;
-  height:66px;
+  background:#3270AF;
+  height: 100px;
   left:0px;
   position:absolute;
   top:0px;
   width:100%;
   z-index:1;
-  font-size:0.7em;
+  font-size:1em;
 }
 
 #header h1 {
-  width: 424px;
-  height: 35px;
+  width: 700px;
+  height: 72px;
   display:block;
   background: url(../img/logo.png) no-repeat;
   line-height:2.1em;
   padding:0;
   padding-left:140px;
-  margin-top:18px;
+  margin-top:10px;
   margin-left:20px;
   color:white;
-  text-transform: uppercase;
+  font-size:2.5em;
 }
 
 #sidebar {
-  background-color:#EDEBEA;
+  background-color:#F2F5F8;
   bottom:0px;
   left:0px;
   overflow:auto;
   padding:20px 0px 0px 15px;
   position:absolute;
-  top:66px;
+  top:100px;
   width:265px;
   z-index:1;
 }
 
 #content {
-  top:64px;
+  top:100px;
   bottom:0px;
   right:0px;
   left:290px;
@@ -239,7 +308,7 @@ pre.shell code::before {
 .intro {
   color:#29231A;
   padding: 22px 25px;
-  background: #EDEBEA;
+  background: #B9E5FF;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -o-border-radius: 5px;
@@ -250,7 +319,6 @@ pre.shell code::before {
   background:#444;
   color:#29231A;
   color:#fff;
-  border-color:#fff;
   font-size:1.5em;
 }
 .intro h1 {
@@ -320,4 +388,3 @@ h3:first-child {
     color: black !important;
   }
 }
-
