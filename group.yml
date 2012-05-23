@@ -1,0 +1,87 @@
+name: Group
+description: Manage a specific group. The url for all groups is defined in the results of the group list.  It will follow the pattern /groups/&lt;groupid&gt; but the groupid is, at the moment, an opaque identifier.  Similarly, the urls for subresources of a group are defined by the group summary.  They will follow the same pattern of using the groupid as the identifier.
+actions:
+  -
+    name: Group Summary
+    method: GET
+    path: /groups/&lt;groupid&gt;
+    description: 
+    messages:
+      -
+        description: Describe a group.
+        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c
+  -
+    name: List group members
+    method: GET
+    path: /groups/&lt;groupid&gt;/members
+    description: As with the group summary
+    messages:
+      -
+        description: Successfully retrieve the list of members in a group.
+        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+  -
+    name: Invite member to group
+    method: POST
+    path: /groups/&lt;groupid&gt;/members
+    description: People can be invited to a group either by email address or by username.  While they will need to have a user account to join a group, an invitation can be sent to an individual without an account
+    messages:
+      -
+        description: Invite someone to join a group via email address (Likely someone without an account)
+        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+        body:
+          emails:
+            - user1@no-reply.com
+            - user2@no-reply.com
+      -
+        description: Invite someone to join a group by username
+        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+        body:
+          users:
+            - user1
+            - user2
+  -
+    name: List policies for group
+    method: GET
+    path: /groups/&lt;groupid&gt;/policies
+    description: Return a collection of policies for a group.  These represent "effective" policies, meaning that the policy list has been merged from parent groups.
+    messages:
+      -
+        description: Successfully retrieve policy list
+        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/policies
+  -
+    name: List messages or events for a group
+    method: GET
+    path: /groups/&lt;groupid&gt;/messages
+    description: Events and notifications are registered for a group. For example, when a new member joins a group that has specific requirements (as defined by the policies), an administrator needs to be notified to evaluate the request. This resource will return a list of those notifications.
+    messages:
+      -
+        description: Successfully retrieve a message list
+        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/messages
+  -
+    name: List email templates for a group
+    method: GET
+    path: /groups/&lt;groupid&gt;/email_templates
+    description: Groups have a set of associated email templates which are used to generate emails to be sent to members.  This returns a list of those templates
+    messages:
+      -
+        description: Successfully list email templates
+        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/email_templates
+  -
+    name: Create group
+    method: POST
+    path: /groups
+    description: Create a new group.  This can be a subgroup of another group or a root group (A group with no parent).
+    messages:
+      -
+        description: Create a subgroup
+        body:
+          name: My new group
+          description: This is my new sub group
+          parent: 27c0b7e4-260a-425b-8eb9-9637be7a4f3c
+          is_active: true
+      -
+        description: Create a new root group
+        body:
+          name: New root Group
+          description: Demonstrate creating a root group
+          is_active: true

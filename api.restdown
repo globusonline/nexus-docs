@@ -28,13 +28,11 @@ Manage user profiles
 
 ## Create user 
 
-*post /users*
+*POST /users*
 
 None
 
-None
-
-#### example request
+#### None
 
 	$ curl -X POST https://graph.api.globusonline.org/users -d '{
 		    "username": "username", 
@@ -47,9 +45,7 @@ None
 
 ---
 
-Unsuccessfully create user with duplicate username
-
-#### example request
+#### Unsuccessfully create user with duplicate username
 
 	$ curl -X POST https://graph.api.globusonline.org/users -d '{
 		    "username": "username", 
@@ -65,21 +61,17 @@ Unsuccessfully create user with duplicate username
 
 ## Get a user 
 
-*Get /users/username*
+*GET /users/username*
 
 None
 
-Successfully retrieve a user
-
-#### example request
+#### Successfully retrieve a user
 
 	$ curl -X GET https://graph.api.globusonline.org/users/username
 
 ---
 
-Request nonexistant user.
-
-#### example request
+#### Request nonexistant user.
 
 	$ curl -X GET https://graph.api.globusonline.org/users/username
 
@@ -92,9 +84,7 @@ Request nonexistant user.
 
 None
 
-Successfully update a user profile.
-
-#### example request
+#### Successfully update a user profile.
 
 	$ curl -X PUT https://graph.api.globusonline.org/users/username -d '{
 		    "fullname": "New Name"
@@ -105,13 +95,11 @@ Successfully update a user profile.
 
 ## Change user password 
 
-*Post /users/username*
+*POST /users/username*
 
 None
 
-Successfully change password
-
-#### example request
+#### Successfully change password
 
 	$ curl -X POST https://graph.api.globusonline.org/users/username -d '{
 		    "password1": "NewPassword", 
@@ -128,9 +116,7 @@ Successfully change password
 
 None
 
-Successfully delete user
-
-#### example request
+#### Successfully delete user
 
 	$ curl -X DELETE https://graph.api.globusonline.org/user/username
 
@@ -155,13 +141,11 @@ Current supported types are:
 
 ## Register a ssh credential. 
 
-*post /users/username/credentials/ssh2*
+*POST /users/username/credentials/ssh2*
 
 None
 
-Successfully create an SSH credential for a user
-
-#### example request
+#### Successfully create an SSH credential for a user
 
 	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
 		    "alias": "My SSH Credential", 
@@ -173,13 +157,11 @@ Successfully create an SSH credential for a user
 
 ## Register an X.509 credential 
 
-*post /users/username/credentials/x509*
+*POST /users/username/credentials/x509*
 
 None
 
-Successfully create an X.509 credential for a user
-
-#### example request
+#### Successfully create an X.509 credential for a user
 
 	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
 		    "alias": "My X.509", 
@@ -191,13 +173,11 @@ Successfully create an X.509 credential for a user
 
 ## Register a MyProxy OAuth account credential 
 
-*post /users/username/credentials/oauth*
+*POST /users/username/credentials/oauth*
 
 This type of credential is used with a MyProxy service which exposes the OAuth protocol. This is the preferred method of working with MyProxy.  Note, that this action returns a redirct message, as opposed to a json body.  The url in the location header should be used to complete the OAuth dance.
 
-Successfuly start the OAuth Dance with a MyProxy server
-
-#### example request
+#### Successfuly start the OAuth Dance with a MyProxy server
 
 	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
 		    "username": "username", 
@@ -210,13 +190,11 @@ Successfuly start the OAuth Dance with a MyProxy server
 
 ## Register a standard MyProxy account credential 
 
-*post /users/username/credentials/myproxy*
+*POST /users/username/credentials/myproxy*
 
 Standard MyProxy is not the best type of credential to use if your MyProxy server supports OAuth.  Using standard MyProxy requires the user to send their password to the Nexus service.
 
-Successfully create a MyProxy Credential
-
-#### example request
+#### Successfully create a MyProxy Credential
 
 	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
 		    "username": "username", 
@@ -230,13 +208,11 @@ Successfully create a MyProxy Credential
 
 ## List Credentials 
 
-*post /users/username/credentials*
+*POST /users/username/credentials*
 
 None
 
-List credentials for user
-
-#### example request
+#### List credentials for user
 
 	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials
 
@@ -252,13 +228,11 @@ Manage groups.
 
 ## List Groups 
 
-*Get /groups/list*
+*GET /groups/list*
 
 Show a list of groups.  Groups are hierarchical, i.e., groups can have child groups.  As such, a list of groups needs to have a base node and a depth.  The depth defines how many generations of groups should be retrieved.  So, a depth of 1 will return all of the child groups of the root, while a depth of 2 will return all of the children and grandchildren of the root group.
 
-Get a list of groups 1 deep
-
-#### example request
+#### Get a list of groups 1 deep
 
 	$ curl -X GET https://graph.api.globusonline.org/groups/list?depth=1
 
@@ -278,9 +252,7 @@ Manage a specific group. The url for all groups is defined in the results of the
 
 None
 
-Describe a group.
-
-#### example request
+#### Describe a group.
 
 	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c
 
@@ -293,9 +265,7 @@ Describe a group.
 
 As with the group summary
 
-Successfully retrieve the list of members in a group.
-
-#### example request
+#### Successfully retrieve the list of members in a group.
 
 	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
 
@@ -308,9 +278,7 @@ Successfully retrieve the list of members in a group.
 
 People can be invited to a group either by email address or by username.  While they will need to have a user account to join a group, an invitation can be sent to an individual without an account
 
-Invite someone to join a group via email address (Likely someone without an account)
-
-#### example request
+#### Invite someone to join a group via email address (Likely someone without an account)
 
 	$ curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
 		    "emails": [
@@ -321,9 +289,7 @@ Invite someone to join a group via email address (Likely someone without an acco
 
 ---
 
-Invite someone to join a group by username
-
-#### example request
+#### Invite someone to join a group by username
 
 	$ curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
 		    "users": [
@@ -341,11 +307,63 @@ Invite someone to join a group by username
 
 Return a collection of policies for a group.  These represent "effective" policies, meaning that the policy list has been merged from parent groups.
 
-Successfully retrieve policy list
-
-#### example request
+#### Successfully retrieve policy list
 
 	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/policies
+
+---
+
+
+## List messages or events for a group 
+
+*GET /groups/&lt;groupid&gt;/messages*
+
+Events and notifications are registered for a group. For example, when a new member joins a group that has specific requirements (as defined by the policies), an administrator needs to be notified to evaluate the request. This resource will return a list of those notifications.
+
+#### Successfully retrieve a message list
+
+	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/messages
+
+---
+
+
+## List email templates for a group 
+
+*GET /groups/&lt;groupid&gt;/email_templates*
+
+Groups have a set of associated email templates which are used to generate emails to be sent to members.  This returns a list of those templates
+
+#### Successfully list email templates
+
+	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/email_templates
+
+---
+
+
+## Create group 
+
+*POST /groups*
+
+Create a new group.  This can be a subgroup of another group or a root group (A group with no parent).
+
+#### Create a subgroup
+
+	$ curl -X POST https://graph.api.globusonline.org/groups -d '{
+		    "is_active": true, 
+		    "name": "My new group", 
+		    "parent": "27c0b7e4-260a-425b-8eb9-9637be7a4f3c", 
+		    "description": "This is my new sub group"
+		}'
+
+---
+
+#### Create a new root group
+
+	$ curl -X POST https://graph.api.globusonline.org/groups -d '{
+		    "is_active": true, 
+		    "name": "New root Group", 
+		    "description": "Demonstrate creating a root group"
+		}'
 
 ---
 
