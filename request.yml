@@ -1,0 +1,20 @@
+title: Nexus API Documentation
+mediaroot: media
+header: 
+  title: Nexus API
+  description: Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.  It also provides the interfaces for authentication with GlobusOnline.
+notes:
+  -
+    title: All API calls start with 
+    content: |
+      <pre class="base">
+      https://graph.api.globusonline.org
+      </pre>
+  -
+    title: Format
+    content: All responses are **JSON** (that is, except for the current HTML docs that you are reading).
+resources:
+  - users.yml
+  - credentials.yml
+  - groups.yml
+

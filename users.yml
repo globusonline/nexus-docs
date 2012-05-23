@@ -1,0 +1,68 @@
+name: Users
+description: Manage user profiles
+actions:
+   -
+     name: Create user
+     method: post
+     path: /users
+     description:
+     messages:
+       -
+         desscription: Successfully create user.
+         body:
+           username: username
+           opt_in: True
+           accept_terms: True
+           full_name: Dummy Users
+           password: ChangeMe
+           email: no-reply@globusonline.org
+       -
+         description: Unsuccessfully create user with duplicate username
+         body:
+           username: username
+           opt_in: True
+           accept_terms: True
+           full_name: Dummy Users
+           password: ChangeMe
+           email: no-reply@globusonline.org
+   -
+     name: Get a user
+     method: Get
+     path: /users/username
+     description:
+     messages:
+       -
+         description: Successfully retrieve a user
+       -
+         description: Request nonexistant user.
+   -
+     name: Update a user profiles
+     method: PUT
+     path: /users/username
+     description:
+     messages:
+       -
+         description: Successfully update a user profile.
+         body:
+           fullname: New Name
+   -
+     name: Change user password
+     method: Post
+     path: /users/username
+     description:
+     messages:
+       -
+         description: Successfully change password
+         body:
+           currentpassword: ChangeMe
+           password1: NewPassword
+           password2: NewPassword
+   -
+     name: Delete a user
+     method: DELETE
+     path: /user/username
+     description:
+     messages:
+       -
+         description: Successfully delete user
+

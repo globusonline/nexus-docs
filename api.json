@@ -1,7 +1,15 @@
 {
   "endpoints": [
-    "POST   /authenticate",
-    "POST   /users",
-    "GET    /users/username"
+    "Create user",
+    "Get a user",
+    "Update a user profiles",
+    "Change user password",
+    "Delete a user",
+    "Register a ssh credential.",
+    "Register an X.509 credential",
+    "Register a MyProxy OAuth account credential",
+    "Register a standard MyProxy account credential",
+    "List Credentials",
+    "List Groups"
   ]
 }

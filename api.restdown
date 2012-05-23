@@ -6,7 +6,7 @@ markdown2extras:
 
 # Nexus API
 
-Nexus is the service which provides user profiles, groups and other resources for Globusonline.  It also provides the interface for authentication with Globusonline.
+Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.  It also provides the interfaces for authentication with GlobusOnline.
 
 
 ### All API calls start with
@@ -15,86 +15,254 @@ Nexus is the service which provides user profiles, groups and other resources fo
 https://graph.api.globusonline.org
 </pre>
 
+
 ### Format
 
 All responses are **JSON** (that is, except for the current HTML docs that you are reading).
 
 
 
-# Authentication
-
-Represents an authentication
-
-## POST /authenticate
-
-
-
-
-
 # Users
 
-Resource representing all of the users in Globusonline
+Manage user profiles
 
-## POST /users
+## Create user 
 
-### Successful user creation request
+*post /users*
+
+None
+
+None
+
 #### example request
 
-    $ curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
-		    "username": "dummy", 
-		    "opt_in": true, 
+	$ curl -X post https://graph.api.globusonline.org/users -d '{
+		    "username": "username", 
+		    "full_name": "Dummy Users", 
 		    "accept_terms": true, 
-		    "fullname": "Dummy User", 
+		    "opt_in": true, 
 		    "password": "ChangeMe", 
 		    "email": "no-reply@globusonline.org"
-		}"
-
-
-#### response
-
-	{
-	    "username": "dummy", 
-	    "email_validated": false, 
-	    "opt_in": true, 
-	    "fullname": "Dummy User", 
-	    "email": "no-reply@globusonline.org", 
-	    "custom_fields": {}, 
-	    "system_admin": false
-	}
+		}'
 
 ---
-### Failed because of existing user
+
+Unsuccessfully create user with duplicate username
+
 #### example request
 
-    $ curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
-		    "username": "dummy", 
-		    "opt_in": true, 
+	$ curl -X post https://graph.api.globusonline.org/users -d '{
+		    "username": "username", 
+		    "full_name": "Dummy Users", 
 		    "accept_terms": true, 
-		    "fullname": "Dummy User", 
+		    "opt_in": true, 
 		    "password": "ChangeMe", 
 		    "email": "no-reply@globusonline.org"
-		}"
-
-
-#### response
-
-	{
-	    "message": "User could not be registered: Username already exists", 
-	    "code": "GENERAL", 
-	    "resource": "/users", 
-	    "request_id": "aa4d76a8-c7a1-4479-82cc-9a5bf6a1557d"
-	}
+		}'
 
 ---
 
 
+## Get a user 
+
+*Get /users/username*
+
+None
+
+Successfully retrieve a user
+
+#### example request
+
+	$ curl -X Get https://graph.api.globusonline.org/users/username
+
+---
+
+Request nonexistant user.
+
+#### example request
+
+	$ curl -X Get https://graph.api.globusonline.org/users/username
+
+---
 
 
-# User
+## Update a user profiles 
 
-An individual user profile in Globusonline
+*PUT /users/username*
 
-## GET /users/username
+None
+
+Successfully update a user profile.
+
+#### example request
+
+	$ curl -X PUT https://graph.api.globusonline.org/users/username -d '{
+		    "fullname": "New Name"
+		}'
+
+---
+
+
+## Change user password 
+
+*Post /users/username*
+
+None
+
+Successfully change password
+
+#### example request
+
+	$ curl -X Post https://graph.api.globusonline.org/users/username -d '{
+		    "password1": "NewPassword", 
+		    "password2": "NewPassword", 
+		    "currentpassword": "ChangeMe"
+		}'
+
+---
+
+
+## Delete a user 
+
+*DELETE /user/username*
+
+None
+
+Successfully delete user
+
+#### example request
+
+	$ curl -X DELETE https://graph.api.globusonline.org/user/username
+
+---
+
+
+
+
+
+# Credentials
+
+Manage credentials associated with a user profile.
+
+Current supported types are:
+
+    * X.509
+    * MyProxy
+    * MyProxy (OAuth)
+    * SSH (OpenSSH format)
+    * Google (OpenId)
+
+
+## Register a ssh credential. 
+
+*post /users/username/credentials/ssh2*
+
+None
+
+Successfully create an SSH credential for a user
+
+#### example request
+
+	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
+		    "alias": "My SSH Credential", 
+		    "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfsbK35x9W3fH/bZ/AJC0mq93DC7ulCleDeQoCsYHWWbLLDtWnlkpHCjXwK1zV7ECYh2FioUs/Dw38+Cj3H+T0EG2ZZrsG6LQOOOLMnAeOic0dD5KmkqJxsMXF1q+vuI1/DKH4qv3ijELduKyqnm/TvXaed+ibrKnM+BWNb0/e2ZmvWZxlBtPC5vpn6VRXDVKbxbwK+X/VRfYyyh0UZcsPoVs99xeHOPZ8c9xCK3Gx9Djp78IWXFcEuuz29wWb/3LEwq7btvA8GC+qNDa+Sh3Co2ikvfoa8g0jVEr58aqE6IwD9NMEoIcK/rDvdoyP39mTBKqHYBQRJ+JOzX9KyViB comment"
+		}'
+
+---
+
+
+## Register an X.509 credential 
+
+*post /users/username/credentials/x509*
+
+None
+
+Successfully create an X.509 credential for a user
+
+#### example request
+
+	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
+		    "alias": "My X.509", 
+		    "certificate": "-----BEGIN CERTIFICATE-----\nMIICejCCAeOgAwIBAgIBCTANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJVUzEa\nMBgGA1UEChMRR2xvYnVzIENvbnNvcnRpdW0xHjAcBgNVBAMTFUNlcnRpZmljYXRl\nIEF1dGhvcml0eTAeFw0xMTAyMjQxOTU0MjBaFw0xMjAyMjQxOTU0MjBaMEAxCzAJ\nBgNVBAYTAlVTMRowGAYDVQQKExFHbG9idXMgQ29uc29ydGl1bTEVMBMGA1UEAxMM\nSkdsb2J1cyB0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/lJGJInNL\n8EtkxNpkiSzAYDHgnEdopx7t7oyzAFIZ/wUXm2EL10M3maj/RaB+9buqmcSxMBp3\nnRJT72GO0MkxAYp20MSiDmDoTOQOwj4drt1plfYgDVfGp6NZdzaYGuu9FCIp8rNA\n9r45yE71rq7C/pgZkMgk231ICtJPWCAriwIDAQABo3sweTAJBgNVHRMEAjAAMCwG\nCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNV\nHQ4EFgQUeyIZsiXmtX/rBWJe1q2d1YkLZYQwHwYDVR0jBBgwFoAUeLGfYCEMWUsK\nTXr/aUeO0l3bGVYwDQYJKoZIhvcNAQEFBQADgYEA0xLD3WI14KnbUkD1kag0/vFk\n/RIYVEfGQEBQRAg9u48+5VixO5yPG8YCNODMAAMfBvmVBv1cuCszlLllDxVT96VM\nL3IjT582oYzQbk1DaDvGwNmQ1RTah6o/+CSOeRZ4Jr4h2p2CaTbMF2gwg+KLx8Pc\nPHNCl/fPxmu/1EYUBHo=\n-----END CERTIFICATE-----\n"
+		}'
+
+---
+
+
+## Register a MyProxy OAuth account credential 
+
+*post /users/username/credentials/oauth*
+
+This type of credential is used with a MyProxy service which exposes the OAuth protocol. This is the preferred method of working with MyProxy.  Note, that this action returns a redirct message, as opposed to a json body.  The url in the location header should be used to complete the OAuth dance.
+
+Successfuly start the OAuth Dance with a MyProxy server
+
+#### example request
+
+	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
+		    "username": "username", 
+		    "alias": "My OAuth", 
+		    "server": "grid.ci.uchicago.edu"
+		}'
+
+---
+
+
+## Register a standard MyProxy account credential 
+
+*post /users/username/credentials/myproxy*
+
+Standard MyProxy is not the best type of credential to use if your MyProxy server supports OAuth.  Using standard MyProxy requires the user to send their password to the Nexus service.
+
+Successfully create a MyProxy Credential
+
+#### example request
+
+	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
+		    "username": "username", 
+		    "alias": "My MyProxy account", 
+		    "password": "password", 
+		    "server": "grid.ci.uchicago.edu"
+		}'
+
+---
+
+
+## List Credentials 
+
+*post /users/username/credentials*
+
+None
+
+List credentials for user
+
+#### example request
+
+	$ curl -X post https://graph.api.globusonline.org/users/username/credentials
+
+---
+
+
+
+
+
+# Groups
+
+Manage groups.
+
+## List Groups 
+
+*Get /groups/list*
+
+Show a list of groups
+
+Get a list of groups 1 deep
+
+#### example request
+
+	$ curl -X Get https://graph.api.globusonline.org/groups/list?depth=1
+
+---
 
 
 

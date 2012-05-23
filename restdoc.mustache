@@ -1,0 +1,60 @@
+---
+title: {{ title }}
+mediaroot: {{ mediaroot }}
+markdown2extras: {{ extras }}
+---
+
+{{#header}}
+# {{ title }}
+
+{{ description }}
+
+{{/header}}
+
+{{#notes}}
+### {{ title }}
+
+{{ content }}
+
+{{/notes}}
+
+{{#resources}}
+
+# {{ name }}
+
+{{ description }}
+
+{{#actions}}
+## {{ name }} 
+
+*{{method}} {{path}}*
+
+{{description}}
+{{#messages}}
+
+{{description}}
+
+#### example request
+
+{{ curl }}
+
+{{#response}}
+
+#### response
+
+HTTP return code: {{status_code}}
+
+{{ body }}
+
+{{/response}}
+---
+{{/messages}}
+
+
+{{/actions}}
+
+
+{{/resources}}
+
+
+

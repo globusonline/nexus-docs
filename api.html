@@ -13,17 +13,25 @@
 
     <div id="sidebar">
 <ul>
-  <li><div><a href="#authentication">Authentication</a></div>
-  <ul>
-    <li><div><a href="#POST-/authenticate"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/authenticate</span></span></a></div></li>
-  </ul></li>
   <li><div><a href="#users">Users</a></div>
   <ul>
-    <li><div><a href="#POST-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/users</span></span></a></div></li>
+    <li><div><a href="#Create-user"><span class="method name"><span class="name">Create user</span></span></a></div></li>
+    <li><div><a href="#Get-a-user"><span class="method name"><span class="name">Get a user</span></span></a></div></li>
+    <li><div><a href="#Update-a-user-profiles"><span class="method name"><span class="name">Update a user profiles</span></span></a></div></li>
+    <li><div><a href="#Change-user-password"><span class="method name"><span class="name">Change user password</span></span></a></div></li>
+    <li><div><a href="#Delete-a-user"><span class="method name"><span class="name">Delete a user</span></span></a></div></li>
   </ul></li>
-  <li><div><a href="#user">User</a></div>
+  <li><div><a href="#credentials">Credentials</a></div>
   <ul>
-    <li><div><a href="#GET-/users/username"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users/username</span></span></a></div></li>
+    <li><div><a href="#Register-a-ssh-credential."><span class="method name"><span class="name">Register a ssh credential.</span></span></a></div></li>
+    <li><div><a href="#Register-an-X.509-credential"><span class="method name"><span class="name">Register an X.509 credential</span></span></a></div></li>
+    <li><div><a href="#Register-a-MyProxy-OAuth-account-credential"><span class="method name"><span class="name">Register a MyProxy OAuth account credential</span></span></a></div></li>
+    <li><div><a href="#Register-a-standard-MyProxy-account-credential"><span class="method name"><span class="name">Register a standard MyProxy account credential</span></span></a></div></li>
+    <li><div><a href="#List-Credentials"><span class="method name"><span class="name">List Credentials</span></span></a></div></li>
+  </ul></li>
+  <li><div><a href="#groups">Groups</a></div>
+  <ul>
+    <li><div><a href="#List-Groups"><span class="method name"><span class="name">List Groups</span></span></a></div></li>
   </ul></li>
 </ul>
 
@@ -34,7 +42,7 @@
 <div class="intro">
 
 
-<p>Nexus is the service which provides user profiles, groups and other resources for Globusonline.  It also provides the interface for authentication with Globusonline.</p>
+<p>Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.  It also provides the interfaces for authentication with GlobusOnline.</p>
 
 <h3>All API calls start with</h3>
 
@@ -48,78 +56,244 @@ https://graph.api.globusonline.org
 
 
 </div>
-<h1 id="authentication">Authentication</h1>
-
-<p>Represents an authentication</p>
-
-<h2 id="POST-/authenticate"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/authenticate</span></span></h2>
-
 <h1 id="users">Users</h1>
 
-<p>Resource representing all of the users in Globusonline</p>
+<p>Manage user profiles</p>
 
-<h2 id="POST-/users"><span class="method justendpoint"><span class="endpoint"><span class="verb">POST</span> <span class="path">/users</span></span></h2>
+<h2 id="Create-user"><span class="method name"><span class="name">Create user</span></span></h2>
 
-<h3>Successful user creation request</h3>
+<p><em>post /users</em></p>
+
+<p>None</p>
+
+<p>None</p>
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
-        "username": "dummy", 
-        "opt_in": true, 
+<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users -d '{
+        "username": "username", 
+        "full_name": "Dummy Users", 
         "accept_terms": true, 
-        "fullname": "Dummy User", 
+        "opt_in": true, 
         "password": "ChangeMe", 
         "email": "no-reply@globusonline.org"
-    }"
-</code></pre>
-
-<h4>response</h4>
-
-<pre><code>{
-    "username": "dummy", 
-    "email_validated": false, 
-    "opt_in": true, 
-    "fullname": "Dummy User", 
-    "email": "no-reply@globusonline.org", 
-    "custom_fields": {}, 
-    "system_admin": false
-}
+    }'
 </code></pre>
 
 <hr />
 
-<h3>Failed because of existing user</h3>
+<p>Unsuccessfully create user with duplicate username</p>
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -H "Content-Type: application/json" -X POST https://graph.api.globusonline.org/users -d "{
-        "username": "dummy", 
-        "opt_in": true, 
+<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users -d '{
+        "username": "username", 
+        "full_name": "Dummy Users", 
         "accept_terms": true, 
-        "fullname": "Dummy User", 
+        "opt_in": true, 
         "password": "ChangeMe", 
         "email": "no-reply@globusonline.org"
-    }"
-</code></pre>
-
-<h4>response</h4>
-
-<pre><code>{
-    "message": "User could not be registered: Username already exists", 
-    "code": "GENERAL", 
-    "resource": "/users", 
-    "request_id": "aa4d76a8-c7a1-4479-82cc-9a5bf6a1557d"
-}
+    }'
 </code></pre>
 
 <hr />
 
-<h1 id="user">User</h1>
+<h2 id="Get-a-user"><span class="method name"><span class="name">Get a user</span></span></h2>
 
-<p>An individual user profile in Globusonline</p>
+<p><em>Get /users/username</em></p>
 
-<h2 id="GET-/users/username"><span class="method justendpoint"><span class="endpoint"><span class="verb">GET</span> <span class="path">/users/username</span></span></h2>
+<p>None</p>
+
+<p>Successfully retrieve a user</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X Get https://graph.api.globusonline.org/users/username
+</code></pre>
+
+<hr />
+
+<p>Request nonexistant user.</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X Get https://graph.api.globusonline.org/users/username
+</code></pre>
+
+<hr />
+
+<h2 id="Update-a-user-profiles"><span class="method name"><span class="name">Update a user profiles</span></span></h2>
+
+<p><em>PUT /users/username</em></p>
+
+<p>None</p>
+
+<p>Successfully update a user profile.</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X PUT https://graph.api.globusonline.org/users/username -d '{
+        "fullname": "New Name"
+    }'
+</code></pre>
+
+<hr />
+
+<h2 id="Change-user-password"><span class="method name"><span class="name">Change user password</span></span></h2>
+
+<p><em>Post /users/username</em></p>
+
+<p>None</p>
+
+<p>Successfully change password</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X Post https://graph.api.globusonline.org/users/username -d '{
+        "password1": "NewPassword", 
+        "password2": "NewPassword", 
+        "currentpassword": "ChangeMe"
+    }'
+</code></pre>
+
+<hr />
+
+<h2 id="Delete-a-user"><span class="method name"><span class="name">Delete a user</span></span></h2>
+
+<p><em>DELETE /user/username</em></p>
+
+<p>None</p>
+
+<p>Successfully delete user</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X DELETE https://graph.api.globusonline.org/user/username
+</code></pre>
+
+<hr />
+
+<h1 id="credentials">Credentials</h1>
+
+<p>Manage credentials associated with a user profile.</p>
+
+<p>Current supported types are:</p>
+
+<pre><code>* X.509
+* MyProxy
+* MyProxy (OAuth)
+* SSH (OpenSSH format)
+* Google (OpenId)
+</code></pre>
+
+<h2 id="Register-a-ssh-credential."><span class="method name"><span class="name">Register a ssh credential.</span></span></h2>
+
+<p><em>post /users/username/credentials/ssh2</em></p>
+
+<p>None</p>
+
+<p>Successfully create an SSH credential for a user</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
+        "alias": "My SSH Credential", 
+        "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfsbK35x9W3fH/bZ/AJC0mq93DC7ulCleDeQoCsYHWWbLLDtWnlkpHCjXwK1zV7ECYh2FioUs/Dw38+Cj3H+T0EG2ZZrsG6LQOOOLMnAeOic0dD5KmkqJxsMXF1q+vuI1/DKH4qv3ijELduKyqnm/TvXaed+ibrKnM+BWNb0/e2ZmvWZxlBtPC5vpn6VRXDVKbxbwK+X/VRfYyyh0UZcsPoVs99xeHOPZ8c9xCK3Gx9Djp78IWXFcEuuz29wWb/3LEwq7btvA8GC+qNDa+Sh3Co2ikvfoa8g0jVEr58aqE6IwD9NMEoIcK/rDvdoyP39mTBKqHYBQRJ+JOzX9KyViB comment"
+    }'
+</code></pre>
+
+<hr />
+
+<h2 id="Register-an-X.509-credential"><span class="method name"><span class="name">Register an X.509 credential</span></span></h2>
+
+<p><em>post /users/username/credentials/x509</em></p>
+
+<p>None</p>
+
+<p>Successfully create an X.509 credential for a user</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
+        "alias": "My X.509", 
+        "certificate": "-----BEGIN CERTIFICATE-----\nMIICejCCAeOgAwIBAgIBCTANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJVUzEa\nMBgGA1UEChMRR2xvYnVzIENvbnNvcnRpdW0xHjAcBgNVBAMTFUNlcnRpZmljYXRl\nIEF1dGhvcml0eTAeFw0xMTAyMjQxOTU0MjBaFw0xMjAyMjQxOTU0MjBaMEAxCzAJ\nBgNVBAYTAlVTMRowGAYDVQQKExFHbG9idXMgQ29uc29ydGl1bTEVMBMGA1UEAxMM\nSkdsb2J1cyB0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/lJGJInNL\n8EtkxNpkiSzAYDHgnEdopx7t7oyzAFIZ/wUXm2EL10M3maj/RaB+9buqmcSxMBp3\nnRJT72GO0MkxAYp20MSiDmDoTOQOwj4drt1plfYgDVfGp6NZdzaYGuu9FCIp8rNA\n9r45yE71rq7C/pgZkMgk231ICtJPWCAriwIDAQABo3sweTAJBgNVHRMEAjAAMCwG\nCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNV\nHQ4EFgQUeyIZsiXmtX/rBWJe1q2d1YkLZYQwHwYDVR0jBBgwFoAUeLGfYCEMWUsK\nTXr/aUeO0l3bGVYwDQYJKoZIhvcNAQEFBQADgYEA0xLD3WI14KnbUkD1kag0/vFk\n/RIYVEfGQEBQRAg9u48+5VixO5yPG8YCNODMAAMfBvmVBv1cuCszlLllDxVT96VM\nL3IjT582oYzQbk1DaDvGwNmQ1RTah6o/+CSOeRZ4Jr4h2p2CaTbMF2gwg+KLx8Pc\nPHNCl/fPxmu/1EYUBHo=\n-----END CERTIFICATE-----\n"
+    }'
+</code></pre>
+
+<hr />
+
+<h2 id="Register-a-MyProxy-OAuth-account-credential"><span class="method name"><span class="name">Register a MyProxy OAuth account credential</span></span></h2>
+
+<p><em>post /users/username/credentials/oauth</em></p>
+
+<p>This type of credential is used with a MyProxy service which exposes the OAuth protocol. This is the preferred method of working with MyProxy.  Note, that this action returns a redirct message, as opposed to a json body.  The url in the location header should be used to complete the OAuth dance.</p>
+
+<p>Successfuly start the OAuth Dance with a MyProxy server</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
+        "username": "username", 
+        "alias": "My OAuth", 
+        "server": "grid.ci.uchicago.edu"
+    }'
+</code></pre>
+
+<hr />
+
+<h2 id="Register-a-standard-MyProxy-account-credential"><span class="method name"><span class="name">Register a standard MyProxy account credential</span></span></h2>
+
+<p><em>post /users/username/credentials/myproxy</em></p>
+
+<p>Standard MyProxy is not the best type of credential to use if your MyProxy server supports OAuth.  Using standard MyProxy requires the user to send their password to the Nexus service.</p>
+
+<p>Successfully create a MyProxy Credential</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
+        "username": "username", 
+        "alias": "My MyProxy account", 
+        "password": "password", 
+        "server": "grid.ci.uchicago.edu"
+    }'
+</code></pre>
+
+<hr />
+
+<h2 id="List-Credentials"><span class="method name"><span class="name">List Credentials</span></span></h2>
+
+<p><em>post /users/username/credentials</em></p>
+
+<p>None</p>
+
+<p>List credentials for user</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials
+</code></pre>
+
+<hr />
+
+<h1 id="groups">Groups</h1>
+
+<p>Manage groups.</p>
+
+<h2 id="List-Groups"><span class="method name"><span class="name">List Groups</span></span></h2>
+
+<p><em>Get /groups/list</em></p>
+
+<p>Show a list of groups</p>
+
+<p>Get a list of groups 1 deep</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X Get https://graph.api.globusonline.org/groups/list?depth=1
+</code></pre>
+
+<hr />
 
     </div>
 <script type="text/javascript" charset="utf-8">

@@ -1,0 +1,17 @@
+name: Groups
+description: Manage groups.
+actions:
+  -
+    name: List Groups
+    method: Get
+    path: /groups/list
+    description: Show a list of groups
+    query_param:
+      depth: How many deep in the group tree should be returned
+      root: Where in the group tree should the list start
+    messages:
+      -
+        description: Get a list of groups 1 deep
+        query:
+          depth: 1
+
