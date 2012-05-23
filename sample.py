@@ -22,6 +22,7 @@ for resource_file in docs['resources']:
     with open(resource_file, 'r') as f:
         resource = yaml.load(f.read())
         for action in resource['actions']:
+            action['method'] = action['method'].upper()
             for message in action['messages']:
                 body = message['body'] if 'body' in message else None
                 query = message['query'] if 'query' in message else None
