@@ -25,7 +25,8 @@ for resource_file in docs['resources']:
             for message in action['messages']:
                 body = message['body'] if 'body' in message else None
                 query = message['query'] if 'query' in message else None
-                message['curl'] = build_curl(action['method'], action['path'], query, body)
+                path = message['path'] if 'path' in message else action['path']
+                message['curl'] = build_curl(action['method'].upper(), path, query, body)
 
         resources.append(resource)
 docs['resources'] = resources
