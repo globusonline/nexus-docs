@@ -35,7 +35,6 @@
   </ul></li>
   <li><div><a href="#group">Group</a></div>
   <ul>
-    <li><div><a href="#Group-Summary"><span class="method name"><span class="name">Group Summary</span></span></a></div></li>
     <li><div><a href="#List-group-members"><span class="method name"><span class="name">List group members</span></span></a></div></li>
     <li><div><a href="#Invite-member-to-group"><span class="method name"><span class="name">Invite member to group</span></span></a></div></li>
     <li><div><a href="#List-policies-for-group"><span class="method name"><span class="name">List policies for group</span></span></a></div></li>
@@ -52,13 +51,19 @@
 <div class="intro">
 
 
-<p>Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.  It also provides the interfaces for authentication with GlobusOnline.</p>
+<p>Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.
+It also provides the interfaces for authentication with GlobusOnline.  All requests to globusonline are made in the context of a community.
+The community name is set using the X-Go-Community-Context header.</p>
+
+<p>So cURL requests to be executed in the context of a specific community would specify the header like:</p>
+
+<p><code>$ curl -H 'X-Go-Community-Context: mycommunity'</code></p>
+
+<p>If the community context is not set, the request will be made in the default GlobusOnline context.</p>
 
 <h3>All API calls start with</h3>
 
-<pre class="base">
-https://graph.api.globusonline.org
-</pre>
+<p><code>https://graph.api.globusonline.org</code></p>
 
 <h3>Format</h3>
 
@@ -284,19 +289,6 @@ https://graph.api.globusonline.org
 
 <p>Manage a specific group. The url for all groups is defined in the results of the group list.  It will follow the pattern /groups/&lt;groupid&gt; but the groupid is, at the moment, an opaque identifier.  Similarly, the urls for subresources of a group are defined by the group summary.  They will follow the same pattern of using the groupid as the identifier.</p>
 
-<h2 id="Group-Summary"><span class="method name"><span class="name">Group Summary</span></span></h2>
-
-<p><em>GET /groups/&lt;groupid&gt;</em></p>
-
-<p>None</p>
-
-<h4>Describe a group.</h4>
-
-<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c
-</code></pre>
-
-<hr />
-
 <h2 id="List-group-members"><span class="method name"><span class="name">List group members</span></span></h2>
 
 <p><em>GET /groups/&lt;groupid&gt;/members</em></p>
@@ -305,7 +297,7 @@ https://graph.api.globusonline.org
 
 <h4>Successfully retrieve the list of members in a group.</h4>
 
-<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members
 </code></pre>
 
 <hr />
@@ -318,7 +310,7 @@ https://graph.api.globusonline.org
 
 <h4>Invite someone to join a group via email address (Likely someone without an account)</h4>
 
-<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
         "emails": [
             "user1@no-reply.com", 
             "user2@no-reply.com"
@@ -330,7 +322,7 @@ https://graph.api.globusonline.org
 
 <h4>Invite someone to join a group by username</h4>
 
-<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
         "users": [
             "user1", 
             "user2"
@@ -348,7 +340,7 @@ https://graph.api.globusonline.org
 
 <h4>Successfully retrieve policy list</h4>
 
-<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/policies
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/policies
 </code></pre>
 
 <hr />
@@ -361,7 +353,7 @@ https://graph.api.globusonline.org
 
 <h4>Successfully retrieve a message list</h4>
 
-<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/messages
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/messages
 </code></pre>
 
 <hr />
@@ -374,7 +366,7 @@ https://graph.api.globusonline.org
 
 <h4>Successfully list email templates</h4>
 
-<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/email_templates
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/email_templates
 </code></pre>
 
 <hr />
@@ -390,7 +382,7 @@ https://graph.api.globusonline.org
 <pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/groups -d '{
         "is_active": true, 
         "name": "My new group", 
-        "parent": "27c0b7e4-260a-425b-8eb9-9637be7a4f3c", 
+        "parent": "34951220-ad51-407d-8502-f83168834ece", 
         "description": "This is my new sub group"
     }'
 </code></pre>

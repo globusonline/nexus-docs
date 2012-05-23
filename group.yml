@@ -9,8 +9,8 @@ actions:
     messages:
       -
         description: Describe a group.
-        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c
-  -
+        path: /groups/34951220-ad51-407d-8502-f83168834ece
+
     name: List group members
     method: GET
     path: /groups/&lt;groupid&gt;/members
@@ -18,7 +18,7 @@ actions:
     messages:
       -
         description: Successfully retrieve the list of members in a group.
-        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+        path: /groups/34951220-ad51-407d-8502-f83168834ece/members
   -
     name: Invite member to group
     method: POST
@@ -27,14 +27,14 @@ actions:
     messages:
       -
         description: Invite someone to join a group via email address (Likely someone without an account)
-        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+        path: /groups/34951220-ad51-407d-8502-f83168834ece/members
         body:
           emails:
             - user1@no-reply.com
             - user2@no-reply.com
       -
         description: Invite someone to join a group by username
-        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+        path: /groups/34951220-ad51-407d-8502-f83168834ece/members
         body:
           users:
             - user1
@@ -47,7 +47,7 @@ actions:
     messages:
       -
         description: Successfully retrieve policy list
-        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/policies
+        path: /groups/34951220-ad51-407d-8502-f83168834ece/policies
   -
     name: List messages or events for a group
     method: GET
@@ -56,7 +56,7 @@ actions:
     messages:
       -
         description: Successfully retrieve a message list
-        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/messages
+        path: /groups/34951220-ad51-407d-8502-f83168834ece/messages
   -
     name: List email templates for a group
     method: GET
@@ -65,7 +65,7 @@ actions:
     messages:
       -
         description: Successfully list email templates
-        path: /groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/email_templates
+        path: /groups/34951220-ad51-407d-8502-f83168834ece/email_templates
   -
     name: Create group
     method: POST
@@ -77,7 +77,7 @@ actions:
         body:
           name: My new group
           description: This is my new sub group
-          parent: 27c0b7e4-260a-425b-8eb9-9637be7a4f3c
+          parent: 34951220-ad51-407d-8502-f83168834ece
           is_active: true
       -
         description: Create a new root group

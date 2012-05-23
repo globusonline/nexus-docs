@@ -2,14 +2,23 @@ title: Nexus API
 mediaroot: media
 header: 
   title: Nexus API
-  description: Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.  It also provides the interfaces for authentication with GlobusOnline.
+  description: |
+    Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.
+    It also provides the interfaces for authentication with GlobusOnline.  All requests to globusonline are made in the context of a community.
+    The community name is set using the X-Go-Community-Context header.
+
+    So cURL requests to be executed in the context of a specific community would specify the header like:
+
+    `$ curl -H 'X-Go-Community-Context: mycommunity'`
+
+    If the community context is not set, the request will be made in the default GlobusOnline context.
+
+
 notes:
   -
     title: All API calls start with 
     content: |
-      <pre class="base">
-      https://graph.api.globusonline.org
-      </pre>
+      `https://graph.api.globusonline.org`
   -
     title: Format
     content: All responses are **JSON** (that is, except for the current HTML docs that you are reading).

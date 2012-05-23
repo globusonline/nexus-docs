@@ -6,14 +6,21 @@ markdown2extras:
 
 # Nexus API
 
-Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.  It also provides the interfaces for authentication with GlobusOnline.
+Nexus is the service which provides user profiles, groups and other resources for GlobusOnline.
+It also provides the interfaces for authentication with GlobusOnline.  All requests to globusonline are made in the context of a community.
+The community name is set using the X-Go-Community-Context header.
+
+So cURL requests to be executed in the context of a specific community would specify the header like:
+
+`$ curl -H 'X-Go-Community-Context: mycommunity'`
+
+If the community context is not set, the request will be made in the default GlobusOnline context.
+
 
 
 ### All API calls start with
 
-<pre class="base">
-https://graph.api.globusonline.org
-</pre>
+`https://graph.api.globusonline.org`
 
 
 ### Format
@@ -246,19 +253,6 @@ Show a list of groups.  Groups are hierarchical, i.e., groups can have child gro
 
 Manage a specific group. The url for all groups is defined in the results of the group list.  It will follow the pattern /groups/&lt;groupid&gt; but the groupid is, at the moment, an opaque identifier.  Similarly, the urls for subresources of a group are defined by the group summary.  They will follow the same pattern of using the groupid as the identifier.
 
-## Group Summary 
-
-*GET /groups/&lt;groupid&gt;*
-
-None
-
-#### Describe a group.
-
-	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c
-
----
-
-
 ## List group members 
 
 *GET /groups/&lt;groupid&gt;/members*
@@ -267,7 +261,7 @@ As with the group summary
 
 #### Successfully retrieve the list of members in a group.
 
-	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+	$ curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members
 
 ---
 
@@ -280,7 +274,7 @@ People can be invited to a group either by email address or by username.  While 
 
 #### Invite someone to join a group via email address (Likely someone without an account)
 
-	$ curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+	$ curl -X POST https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
 		    "emails": [
 		        "user1@no-reply.com", 
 		        "user2@no-reply.com"
@@ -291,7 +285,7 @@ People can be invited to a group either by email address or by username.  While 
 
 #### Invite someone to join a group by username
 
-	$ curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+	$ curl -X POST https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
 		    "users": [
 		        "user1", 
 		        "user2"
@@ -309,7 +303,7 @@ Return a collection of policies for a group.  These represent "effective" polici
 
 #### Successfully retrieve policy list
 
-	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/policies
+	$ curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/policies
 
 ---
 
@@ -322,7 +316,7 @@ Events and notifications are registered for a group. For example, when a new mem
 
 #### Successfully retrieve a message list
 
-	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/messages
+	$ curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/messages
 
 ---
 
@@ -335,7 +329,7 @@ Groups have a set of associated email templates which are used to generate email
 
 #### Successfully list email templates
 
-	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/email_templates
+	$ curl -X GET https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/email_templates
 
 ---
 
@@ -351,7 +345,7 @@ Create a new group.  This can be a subgroup of another group or a root group (A 
 	$ curl -X POST https://graph.api.globusonline.org/groups -d '{
 		    "is_active": true, 
 		    "name": "My new group", 
-		    "parent": "27c0b7e4-260a-425b-8eb9-9637be7a4f3c", 
+		    "parent": "34951220-ad51-407d-8502-f83168834ece", 
 		    "description": "This is my new sub group"
 		}'
 
