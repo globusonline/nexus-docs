@@ -5,7 +5,7 @@ actions:
     name: List Groups
     method: Get
     path: /groups/list
-    description: Show a list of groups
+    description: Show a list of groups.  Groups are hierarchical, i.e., groups can have child groups.  As such, a list of groups needs to have a base node and a depth.  The depth defines how many generations of groups should be retrieved.  So, a depth of 1 will return all of the child groups of the root, while a depth of 2 will return all of the children and grandchildren of the root group.
     query_param:
       depth: How many deep in the group tree should be returned
       root: Where in the group tree should the list start
@@ -14,4 +14,5 @@ actions:
         description: Get a list of groups 1 deep
         query:
           depth: 1
+
 

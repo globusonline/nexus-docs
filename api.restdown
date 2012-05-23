@@ -36,7 +36,7 @@ None
 
 #### example request
 
-	$ curl -X post https://graph.api.globusonline.org/users -d '{
+	$ curl -X POST https://graph.api.globusonline.org/users -d '{
 		    "username": "username", 
 		    "full_name": "Dummy Users", 
 		    "accept_terms": true, 
@@ -51,7 +51,7 @@ Unsuccessfully create user with duplicate username
 
 #### example request
 
-	$ curl -X post https://graph.api.globusonline.org/users -d '{
+	$ curl -X POST https://graph.api.globusonline.org/users -d '{
 		    "username": "username", 
 		    "full_name": "Dummy Users", 
 		    "accept_terms": true, 
@@ -73,7 +73,7 @@ Successfully retrieve a user
 
 #### example request
 
-	$ curl -X Get https://graph.api.globusonline.org/users/username
+	$ curl -X GET https://graph.api.globusonline.org/users/username
 
 ---
 
@@ -81,7 +81,7 @@ Request nonexistant user.
 
 #### example request
 
-	$ curl -X Get https://graph.api.globusonline.org/users/username
+	$ curl -X GET https://graph.api.globusonline.org/users/username
 
 ---
 
@@ -113,7 +113,7 @@ Successfully change password
 
 #### example request
 
-	$ curl -X Post https://graph.api.globusonline.org/users/username -d '{
+	$ curl -X POST https://graph.api.globusonline.org/users/username -d '{
 		    "password1": "NewPassword", 
 		    "password2": "NewPassword", 
 		    "currentpassword": "ChangeMe"
@@ -146,11 +146,11 @@ Manage credentials associated with a user profile.
 
 Current supported types are:
 
-    * X.509
-    * MyProxy
-    * MyProxy (OAuth)
-    * SSH (OpenSSH format)
-    * Google (OpenId)
+* X.509
+* MyProxy
+* MyProxy (OAuth)
+* SSH (OpenSSH format)
+* Google (OpenId)
 
 
 ## Register a ssh credential. 
@@ -163,7 +163,7 @@ Successfully create an SSH credential for a user
 
 #### example request
 
-	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
+	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
 		    "alias": "My SSH Credential", 
 		    "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfsbK35x9W3fH/bZ/AJC0mq93DC7ulCleDeQoCsYHWWbLLDtWnlkpHCjXwK1zV7ECYh2FioUs/Dw38+Cj3H+T0EG2ZZrsG6LQOOOLMnAeOic0dD5KmkqJxsMXF1q+vuI1/DKH4qv3ijELduKyqnm/TvXaed+ibrKnM+BWNb0/e2ZmvWZxlBtPC5vpn6VRXDVKbxbwK+X/VRfYyyh0UZcsPoVs99xeHOPZ8c9xCK3Gx9Djp78IWXFcEuuz29wWb/3LEwq7btvA8GC+qNDa+Sh3Co2ikvfoa8g0jVEr58aqE6IwD9NMEoIcK/rDvdoyP39mTBKqHYBQRJ+JOzX9KyViB comment"
 		}'
@@ -181,7 +181,7 @@ Successfully create an X.509 credential for a user
 
 #### example request
 
-	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
+	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
 		    "alias": "My X.509", 
 		    "certificate": "-----BEGIN CERTIFICATE-----\nMIICejCCAeOgAwIBAgIBCTANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJVUzEa\nMBgGA1UEChMRR2xvYnVzIENvbnNvcnRpdW0xHjAcBgNVBAMTFUNlcnRpZmljYXRl\nIEF1dGhvcml0eTAeFw0xMTAyMjQxOTU0MjBaFw0xMjAyMjQxOTU0MjBaMEAxCzAJ\nBgNVBAYTAlVTMRowGAYDVQQKExFHbG9idXMgQ29uc29ydGl1bTEVMBMGA1UEAxMM\nSkdsb2J1cyB0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/lJGJInNL\n8EtkxNpkiSzAYDHgnEdopx7t7oyzAFIZ/wUXm2EL10M3maj/RaB+9buqmcSxMBp3\nnRJT72GO0MkxAYp20MSiDmDoTOQOwj4drt1plfYgDVfGp6NZdzaYGuu9FCIp8rNA\n9r45yE71rq7C/pgZkMgk231ICtJPWCAriwIDAQABo3sweTAJBgNVHRMEAjAAMCwG\nCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNV\nHQ4EFgQUeyIZsiXmtX/rBWJe1q2d1YkLZYQwHwYDVR0jBBgwFoAUeLGfYCEMWUsK\nTXr/aUeO0l3bGVYwDQYJKoZIhvcNAQEFBQADgYEA0xLD3WI14KnbUkD1kag0/vFk\n/RIYVEfGQEBQRAg9u48+5VixO5yPG8YCNODMAAMfBvmVBv1cuCszlLllDxVT96VM\nL3IjT582oYzQbk1DaDvGwNmQ1RTah6o/+CSOeRZ4Jr4h2p2CaTbMF2gwg+KLx8Pc\nPHNCl/fPxmu/1EYUBHo=\n-----END CERTIFICATE-----\n"
 		}'
@@ -199,7 +199,7 @@ Successfuly start the OAuth Dance with a MyProxy server
 
 #### example request
 
-	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
+	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
 		    "username": "username", 
 		    "alias": "My OAuth", 
 		    "server": "grid.ci.uchicago.edu"
@@ -218,7 +218,7 @@ Successfully create a MyProxy Credential
 
 #### example request
 
-	$ curl -X post https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
+	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
 		    "username": "username", 
 		    "alias": "My MyProxy account", 
 		    "password": "password", 
@@ -238,7 +238,7 @@ List credentials for user
 
 #### example request
 
-	$ curl -X post https://graph.api.globusonline.org/users/username/credentials
+	$ curl -X POST https://graph.api.globusonline.org/users/username/credentials
 
 ---
 
@@ -254,13 +254,98 @@ Manage groups.
 
 *Get /groups/list*
 
-Show a list of groups
+Show a list of groups.  Groups are hierarchical, i.e., groups can have child groups.  As such, a list of groups needs to have a base node and a depth.  The depth defines how many generations of groups should be retrieved.  So, a depth of 1 will return all of the child groups of the root, while a depth of 2 will return all of the children and grandchildren of the root group.
 
 Get a list of groups 1 deep
 
 #### example request
 
-	$ curl -X Get https://graph.api.globusonline.org/groups/list?depth=1
+	$ curl -X GET https://graph.api.globusonline.org/groups/list?depth=1
+
+---
+
+
+
+
+
+# Group
+
+Manage a specific group. The url for all groups is defined in the results of the group list.  It will follow the pattern /groups/&lt;groupid&gt; but the groupid is, at the moment, an opaque identifier.  Similarly, the urls for subresources of a group are defined by the group summary.  They will follow the same pattern of using the groupid as the identifier.
+
+## Group Summary 
+
+*GET /groups/&lt;groupid&gt;*
+
+None
+
+Describe a group.
+
+#### example request
+
+	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c
+
+---
+
+
+## List group members 
+
+*GET /groups/&lt;groupid&gt;/members*
+
+As with the group summary
+
+Successfully retrieve the list of members in a group.
+
+#### example request
+
+	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+
+---
+
+
+## Invite member to group 
+
+*POST /groups/&lt;groupid&gt;/members*
+
+People can be invited to a group either by email address or by username.  While they will need to have a user account to join a group, an invitation can be sent to an individual without an account
+
+Invite someone to join a group via email address (Likely someone without an account)
+
+#### example request
+
+	$ curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+		    "emails": [
+		        "user1@no-reply.com", 
+		        "user2@no-reply.com"
+		    ]
+		}'
+
+---
+
+Invite someone to join a group by username
+
+#### example request
+
+	$ curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+		    "users": [
+		        "user1", 
+		        "user2"
+		    ]
+		}'
+
+---
+
+
+## List policies for group 
+
+*GET /groups/&lt;groupid&gt;/policies*
+
+Return a collection of policies for a group.  These represent "effective" policies, meaning that the policy list has been merged from parent groups.
+
+Successfully retrieve policy list
+
+#### example request
+
+	$ curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/policies
 
 ---
 

@@ -17,4 +17,5 @@ resources:
   - users.yml
   - credentials.yml
   - groups.yml
+  - group.yml
 

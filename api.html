@@ -33,6 +33,13 @@
   <ul>
     <li><div><a href="#List-Groups"><span class="method name"><span class="name">List Groups</span></span></a></div></li>
   </ul></li>
+  <li><div><a href="#group">Group</a></div>
+  <ul>
+    <li><div><a href="#Group-Summary"><span class="method name"><span class="name">Group Summary</span></span></a></div></li>
+    <li><div><a href="#List-group-members"><span class="method name"><span class="name">List group members</span></span></a></div></li>
+    <li><div><a href="#Invite-member-to-group"><span class="method name"><span class="name">Invite member to group</span></span></a></div></li>
+    <li><div><a href="#List-policies-for-group"><span class="method name"><span class="name">List policies for group</span></span></a></div></li>
+  </ul></li>
 </ul>
 
     </div>
@@ -70,7 +77,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users -d '{
         "username": "username", 
         "full_name": "Dummy Users", 
         "accept_terms": true, 
@@ -86,7 +93,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users -d '{
         "username": "username", 
         "full_name": "Dummy Users", 
         "accept_terms": true, 
@@ -108,7 +115,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X Get https://graph.api.globusonline.org/users/username
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/users/username
 </code></pre>
 
 <hr />
@@ -117,7 +124,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X Get https://graph.api.globusonline.org/users/username
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/users/username
 </code></pre>
 
 <hr />
@@ -149,7 +156,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X Post https://graph.api.globusonline.org/users/username -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users/username -d '{
         "password1": "NewPassword", 
         "password2": "NewPassword", 
         "currentpassword": "ChangeMe"
@@ -179,12 +186,13 @@ https://graph.api.globusonline.org
 
 <p>Current supported types are:</p>
 
-<pre><code>* X.509
-* MyProxy
-* MyProxy (OAuth)
-* SSH (OpenSSH format)
-* Google (OpenId)
-</code></pre>
+<ul>
+<li>X.509</li>
+<li>MyProxy</li>
+<li>MyProxy (OAuth)</li>
+<li>SSH (OpenSSH format)</li>
+<li>Google (OpenId)</li>
+</ul>
 
 <h2 id="Register-a-ssh-credential."><span class="method name"><span class="name">Register a ssh credential.</span></span></h2>
 
@@ -196,7 +204,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
         "alias": "My SSH Credential", 
         "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfsbK35x9W3fH/bZ/AJC0mq93DC7ulCleDeQoCsYHWWbLLDtWnlkpHCjXwK1zV7ECYh2FioUs/Dw38+Cj3H+T0EG2ZZrsG6LQOOOLMnAeOic0dD5KmkqJxsMXF1q+vuI1/DKH4qv3ijELduKyqnm/TvXaed+ibrKnM+BWNb0/e2ZmvWZxlBtPC5vpn6VRXDVKbxbwK+X/VRfYyyh0UZcsPoVs99xeHOPZ8c9xCK3Gx9Djp78IWXFcEuuz29wWb/3LEwq7btvA8GC+qNDa+Sh3Co2ikvfoa8g0jVEr58aqE6IwD9NMEoIcK/rDvdoyP39mTBKqHYBQRJ+JOzX9KyViB comment"
     }'
@@ -214,7 +222,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
         "alias": "My X.509", 
         "certificate": "-----BEGIN CERTIFICATE-----\nMIICejCCAeOgAwIBAgIBCTANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJVUzEa\nMBgGA1UEChMRR2xvYnVzIENvbnNvcnRpdW0xHjAcBgNVBAMTFUNlcnRpZmljYXRl\nIEF1dGhvcml0eTAeFw0xMTAyMjQxOTU0MjBaFw0xMjAyMjQxOTU0MjBaMEAxCzAJ\nBgNVBAYTAlVTMRowGAYDVQQKExFHbG9idXMgQ29uc29ydGl1bTEVMBMGA1UEAxMM\nSkdsb2J1cyB0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/lJGJInNL\n8EtkxNpkiSzAYDHgnEdopx7t7oyzAFIZ/wUXm2EL10M3maj/RaB+9buqmcSxMBp3\nnRJT72GO0MkxAYp20MSiDmDoTOQOwj4drt1plfYgDVfGp6NZdzaYGuu9FCIp8rNA\n9r45yE71rq7C/pgZkMgk231ICtJPWCAriwIDAQABo3sweTAJBgNVHRMEAjAAMCwG\nCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNV\nHQ4EFgQUeyIZsiXmtX/rBWJe1q2d1YkLZYQwHwYDVR0jBBgwFoAUeLGfYCEMWUsK\nTXr/aUeO0l3bGVYwDQYJKoZIhvcNAQEFBQADgYEA0xLD3WI14KnbUkD1kag0/vFk\n/RIYVEfGQEBQRAg9u48+5VixO5yPG8YCNODMAAMfBvmVBv1cuCszlLllDxVT96VM\nL3IjT582oYzQbk1DaDvGwNmQ1RTah6o/+CSOeRZ4Jr4h2p2CaTbMF2gwg+KLx8Pc\nPHNCl/fPxmu/1EYUBHo=\n-----END CERTIFICATE-----\n"
     }'
@@ -232,7 +240,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
         "username": "username", 
         "alias": "My OAuth", 
         "server": "grid.ci.uchicago.edu"
@@ -251,7 +259,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
         "username": "username", 
         "alias": "My MyProxy account", 
         "password": "password", 
@@ -271,7 +279,7 @@ https://graph.api.globusonline.org
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X post https://graph.api.globusonline.org/users/username/credentials
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/users/username/credentials
 </code></pre>
 
 <hr />
@@ -284,13 +292,96 @@ https://graph.api.globusonline.org
 
 <p><em>Get /groups/list</em></p>
 
-<p>Show a list of groups</p>
+<p>Show a list of groups.  Groups are hierarchical, i.e., groups can have child groups.  As such, a list of groups needs to have a base node and a depth.  The depth defines how many generations of groups should be retrieved.  So, a depth of 1 will return all of the child groups of the root, while a depth of 2 will return all of the children and grandchildren of the root group.</p>
 
 <p>Get a list of groups 1 deep</p>
 
 <h4>example request</h4>
 
-<pre class="shell"><code>curl -X Get https://graph.api.globusonline.org/groups/list?depth=1
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/list?depth=1
+</code></pre>
+
+<hr />
+
+<h1 id="group">Group</h1>
+
+<p>Manage a specific group. The url for all groups is defined in the results of the group list.  It will follow the pattern /groups/&lt;groupid&gt; but the groupid is, at the moment, an opaque identifier.  Similarly, the urls for subresources of a group are defined by the group summary.  They will follow the same pattern of using the groupid as the identifier.</p>
+
+<h2 id="Group-Summary"><span class="method name"><span class="name">Group Summary</span></span></h2>
+
+<p><em>GET /groups/&lt;groupid&gt;</em></p>
+
+<p>None</p>
+
+<p>Describe a group.</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c
+</code></pre>
+
+<hr />
+
+<h2 id="List-group-members"><span class="method name"><span class="name">List group members</span></span></h2>
+
+<p><em>GET /groups/&lt;groupid&gt;/members</em></p>
+
+<p>As with the group summary</p>
+
+<p>Successfully retrieve the list of members in a group.</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members
+</code></pre>
+
+<hr />
+
+<h2 id="Invite-member-to-group"><span class="method name"><span class="name">Invite member to group</span></span></h2>
+
+<p><em>POST /groups/&lt;groupid&gt;/members</em></p>
+
+<p>People can be invited to a group either by email address or by username.  While they will need to have a user account to join a group, an invitation can be sent to an individual without an account</p>
+
+<p>Invite someone to join a group via email address (Likely someone without an account)</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+        "emails": [
+            "user1@no-reply.com", 
+            "user2@no-reply.com"
+        ]
+    }'
+</code></pre>
+
+<hr />
+
+<p>Invite someone to join a group by username</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X POST https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/members -d '{
+        "users": [
+            "user1", 
+            "user2"
+        ]
+    }'
+</code></pre>
+
+<hr />
+
+<h2 id="List-policies-for-group"><span class="method name"><span class="name">List policies for group</span></span></h2>
+
+<p><em>GET /groups/&lt;groupid&gt;/policies</em></p>
+
+<p>Return a collection of policies for a group.  These represent "effective" policies, meaning that the policy list has been merged from parent groups.</p>
+
+<p>Successfully retrieve policy list</p>
+
+<h4>example request</h4>
+
+<pre class="shell"><code>curl -X GET https://graph.api.globusonline.org/groups/27c0b7e4-260a-425b-8eb9-9637be7a4f3c/policies
 </code></pre>
 
 <hr />

@@ -10,6 +10,10 @@
     "Register a MyProxy OAuth account credential",
     "Register a standard MyProxy account credential",
     "List Credentials",
-    "List Groups"
+    "List Groups",
+    "Group Summary",
+    "List group members",
+    "Invite member to group",
+    "List policies for group"
   ]
 }
