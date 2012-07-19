@@ -6,7 +6,7 @@ with open('request.yml', 'r') as f:
     docs = yaml.load(f.read())
 
 def build_curl(method, path, query, body):
-    curl_base = '$ curl -X {0}'.format(method)
+    curl_base = '$ curl -X {0} -H "Content-Type: application/json"'.format(method)
     curl_base = '{0} https://graph.api.globusonline.org{1}'.format(curl_base,
             path)
     if query is not None:

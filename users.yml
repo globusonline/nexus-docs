@@ -13,7 +13,7 @@ actions:
            username: username
            opt_in: True
            accept_terms: True
-           full_name: Dummy Users
+           fullname: Dummy Users
            password: ChangeMe
            email: no-reply@globusonline.org
        -
@@ -22,7 +22,7 @@ actions:
            username: username
            opt_in: True
            accept_terms: True
-           full_name: Dummy Users
+           fullname: Dummy Users
            password: ChangeMe
            email: no-reply@globusonline.org
    -
