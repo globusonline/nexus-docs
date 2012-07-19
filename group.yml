@@ -24,6 +24,17 @@ actions:
     method: POST
     path: /groups/&lt;groupid&gt;/members
     description: People can be invited to a group either by email address or by username.  While they will need to have a user account to join a group, an invitation can be sent to an individual without an account
+    params:
+      emails: 
+        description: A list of emails of individuals to invite to join the group
+        required: false
+        type: array (string)
+      users:
+        description: A list of usernames of individuals to invite to join the group
+        required: false
+        type: array (string)
+
+
     messages:
       -
         description: Invite someone to join a group via email address (Likely someone without an account)
