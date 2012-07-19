@@ -1,0 +1,3 @@
+[submodule "vendor/restdown"]
+	path = vendor/restdown
+	url = https://github.com/trentm/restdown.git
