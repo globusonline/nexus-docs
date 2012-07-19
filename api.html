@@ -15,32 +15,32 @@
 <ul>
   <li><div><a href="#users">Users</a></div>
   <ul>
-    <li><div><a href="#Create-user"><span class="method name"><span class="name">Create user</span></span></a></div></li>
-    <li><div><a href="#Get-a-user"><span class="method name"><span class="name">Get a user</span></span></a></div></li>
-    <li><div><a href="#Update-a-user-profiles"><span class="method name"><span class="name">Update a user profiles</span></span></a></div></li>
-    <li><div><a href="#Change-user-password"><span class="method name"><span class="name">Change user password</span></span></a></div></li>
-    <li><div><a href="#Delete-a-user"><span class="method name"><span class="name">Delete a user</span></span></a></div></li>
+    <li><div><a href="#Create"><span class="method name"><span class="name">Create user</span></span></a></div></li>
+    <li><div><a href="#Get"><span class="method name"><span class="name">Get a user</span></span></a></div></li>
+    <li><div><a href="#Update"><span class="method name"><span class="name">Update a user profiles</span></span></a></div></li>
+    <li><div><a href="#Change"><span class="method name"><span class="name">Change user password</span></span></a></div></li>
+    <li><div><a href="#Delete"><span class="method name"><span class="name">Delete a user</span></span></a></div></li>
   </ul></li>
   <li><div><a href="#credentials">Credentials</a></div>
   <ul>
-    <li><div><a href="#Register-a-ssh-credential."><span class="method name"><span class="name">Register a ssh credential.</span></span></a></div></li>
-    <li><div><a href="#Register-an-X.509-credential"><span class="method name"><span class="name">Register an X.509 credential</span></span></a></div></li>
-    <li><div><a href="#Register-a-MyProxy-OAuth-account-credential"><span class="method name"><span class="name">Register a MyProxy OAuth account credential</span></span></a></div></li>
-    <li><div><a href="#Register-a-standard-MyProxy-account-credential"><span class="method name"><span class="name">Register a standard MyProxy account credential</span></span></a></div></li>
-    <li><div><a href="#List-Credentials"><span class="method name"><span class="name">List Credentials</span></span></a></div></li>
+    <li><div><a href="#Register"><span class="method name"><span class="name">Register a ssh credential.</span></span></a></div></li>
+    <li><div><a href="#Register"><span class="method name"><span class="name">Register an X.509 credential</span></span></a></div></li>
+    <li><div><a href="#Register"><span class="method name"><span class="name">Register a MyProxy OAuth account credential</span></span></a></div></li>
+    <li><div><a href="#Register"><span class="method name"><span class="name">Register a standard MyProxy account credential</span></span></a></div></li>
+    <li><div><a href="#List"><span class="method name"><span class="name">List Credentials</span></span></a></div></li>
   </ul></li>
   <li><div><a href="#groups">Groups</a></div>
   <ul>
-    <li><div><a href="#List-Groups"><span class="method name"><span class="name">List Groups</span></span></a></div></li>
+    <li><div><a href="#List"><span class="method name"><span class="name">List Groups</span></span></a></div></li>
   </ul></li>
   <li><div><a href="#group">Group</a></div>
   <ul>
-    <li><div><a href="#List-group-members"><span class="method name"><span class="name">List group members</span></span></a></div></li>
-    <li><div><a href="#Invite-member-to-group"><span class="method name"><span class="name">Invite member to group</span></span></a></div></li>
-    <li><div><a href="#List-policies-for-group"><span class="method name"><span class="name">List policies for group</span></span></a></div></li>
-    <li><div><a href="#List-messages-or-events-for-a-group"><span class="method name"><span class="name">List messages or events for a group</span></span></a></div></li>
-    <li><div><a href="#List-email-templates-for-a-group"><span class="method name"><span class="name">List email templates for a group</span></span></a></div></li>
-    <li><div><a href="#Create-group"><span class="method name"><span class="name">Create group</span></span></a></div></li>
+    <li><div><a href="#List"><span class="method name"><span class="name">List group members</span></span></a></div></li>
+    <li><div><a href="#Invite"><span class="method name"><span class="name">Invite member to group</span></span></a></div></li>
+    <li><div><a href="#List"><span class="method name"><span class="name">List policies for group</span></span></a></div></li>
+    <li><div><a href="#List"><span class="method name"><span class="name">List messages or events for a group</span></span></a></div></li>
+    <li><div><a href="#List"><span class="method name"><span class="name">List email templates for a group</span></span></a></div></li>
+    <li><div><a href="#Create"><span class="method name"><span class="name">Create group</span></span></a></div></li>
   </ul></li>
 </ul>
 
@@ -75,7 +75,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <p>Manage user profiles</p>
 
-<h2 id="Create-user"><span class="method name"><span class="name">Create user</span></span></h2>
+<h2 id="Create"><span class="method name"><span class="name">Create user</span></span></h2>
 
 <p><em>POST /users</em></p>
 
@@ -83,7 +83,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>None</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users -d '{
         "username": "username", 
         "accept_terms": true, 
         "opt_in": true, 
@@ -97,7 +97,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Unsuccessfully create user with duplicate username</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users -d '{
         "username": "username", 
         "accept_terms": true, 
         "opt_in": true, 
@@ -109,7 +109,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <hr />
 
-<h2 id="Get-a-user"><span class="method name"><span class="name">Get a user</span></span></h2>
+<h2 id="Get"><span class="method name"><span class="name">Get a user</span></span></h2>
 
 <p><em>GET /users/username</em></p>
 
@@ -117,19 +117,19 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve a user</h4>
 
-<pre class="shell"><code>curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username
 </code></pre>
 
 <hr />
 
 <h4>Request nonexistant user.</h4>
 
-<pre class="shell"><code>curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username
 </code></pre>
 
 <hr />
 
-<h2 id="Update-a-user-profiles"><span class="method name"><span class="name">Update a user profiles</span></span></h2>
+<h2 id="Update"><span class="method name"><span class="name">Update a user profiles</span></span></h2>
 
 <p><em>PUT /users/username</em></p>
 
@@ -137,14 +137,14 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully update a user profile.</h4>
 
-<pre class="shell"><code>curl -X PUT -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username -d '{
+<pre><code>$ curl -X PUT -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username -d '{
         "fullname": "New Name"
     }'
 </code></pre>
 
 <hr />
 
-<h2 id="Change-user-password"><span class="method name"><span class="name">Change user password</span></span></h2>
+<h2 id="Change"><span class="method name"><span class="name">Change user password</span></span></h2>
 
 <p><em>POST /users/username</em></p>
 
@@ -152,7 +152,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully change password</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username -d '{
         "password1": "NewPassword", 
         "password2": "NewPassword", 
         "currentpassword": "ChangeMe"
@@ -161,7 +161,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <hr />
 
-<h2 id="Delete-a-user"><span class="method name"><span class="name">Delete a user</span></span></h2>
+<h2 id="Delete"><span class="method name"><span class="name">Delete a user</span></span></h2>
 
 <p><em>DELETE /user/username</em></p>
 
@@ -169,7 +169,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully delete user</h4>
 
-<pre class="shell"><code>curl -X DELETE -H "Content-Type: application/json" https://graph.api.globusonline.org/user/username
+<pre><code>$ curl -X DELETE -H "Content-Type: application/json" https://graph.api.globusonline.org/user/username
 </code></pre>
 
 <hr />
@@ -188,7 +188,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 <li>Google (OpenId)</li>
 </ul>
 
-<h2 id="Register-a-ssh-credential."><span class="method name"><span class="name">Register a ssh credential.</span></span></h2>
+<h2 id="Register"><span class="method name"><span class="name">Register a ssh credential.</span></span></h2>
 
 <p><em>POST /users/username/credentials/ssh2</em></p>
 
@@ -196,7 +196,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully create an SSH credential for a user</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
         "alias": "My SSH Credential", 
         "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfsbK35x9W3fH/bZ/AJC0mq93DC7ulCleDeQoCsYHWWbLLDtWnlkpHCjXwK1zV7ECYh2FioUs/Dw38+Cj3H+T0EG2ZZrsG6LQOOOLMnAeOic0dD5KmkqJxsMXF1q+vuI1/DKH4qv3ijELduKyqnm/TvXaed+ibrKnM+BWNb0/e2ZmvWZxlBtPC5vpn6VRXDVKbxbwK+X/VRfYyyh0UZcsPoVs99xeHOPZ8c9xCK3Gx9Djp78IWXFcEuuz29wWb/3LEwq7btvA8GC+qNDa+Sh3Co2ikvfoa8g0jVEr58aqE6IwD9NMEoIcK/rDvdoyP39mTBKqHYBQRJ+JOzX9KyViB comment"
     }'
@@ -204,7 +204,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <hr />
 
-<h2 id="Register-an-X.509-credential"><span class="method name"><span class="name">Register an X.509 credential</span></span></h2>
+<h2 id="Register"><span class="method name"><span class="name">Register an X.509 credential</span></span></h2>
 
 <p><em>POST /users/username/credentials/x509</em></p>
 
@@ -212,7 +212,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully create an X.509 credential for a user</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
         "alias": "My X.509", 
         "certificate": "-----BEGIN CERTIFICATE-----\nMIICejCCAeOgAwIBAgIBCTANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJVUzEa\nMBgGA1UEChMRR2xvYnVzIENvbnNvcnRpdW0xHjAcBgNVBAMTFUNlcnRpZmljYXRl\nIEF1dGhvcml0eTAeFw0xMTAyMjQxOTU0MjBaFw0xMjAyMjQxOTU0MjBaMEAxCzAJ\nBgNVBAYTAlVTMRowGAYDVQQKExFHbG9idXMgQ29uc29ydGl1bTEVMBMGA1UEAxMM\nSkdsb2J1cyB0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/lJGJInNL\n8EtkxNpkiSzAYDHgnEdopx7t7oyzAFIZ/wUXm2EL10M3maj/RaB+9buqmcSxMBp3\nnRJT72GO0MkxAYp20MSiDmDoTOQOwj4drt1plfYgDVfGp6NZdzaYGuu9FCIp8rNA\n9r45yE71rq7C/pgZkMgk231ICtJPWCAriwIDAQABo3sweTAJBgNVHRMEAjAAMCwG\nCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNV\nHQ4EFgQUeyIZsiXmtX/rBWJe1q2d1YkLZYQwHwYDVR0jBBgwFoAUeLGfYCEMWUsK\nTXr/aUeO0l3bGVYwDQYJKoZIhvcNAQEFBQADgYEA0xLD3WI14KnbUkD1kag0/vFk\n/RIYVEfGQEBQRAg9u48+5VixO5yPG8YCNODMAAMfBvmVBv1cuCszlLllDxVT96VM\nL3IjT582oYzQbk1DaDvGwNmQ1RTah6o/+CSOeRZ4Jr4h2p2CaTbMF2gwg+KLx8Pc\nPHNCl/fPxmu/1EYUBHo=\n-----END CERTIFICATE-----\n"
     }'
@@ -220,7 +220,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <hr />
 
-<h2 id="Register-a-MyProxy-OAuth-account-credential"><span class="method name"><span class="name">Register a MyProxy OAuth account credential</span></span></h2>
+<h2 id="Register"><span class="method name"><span class="name">Register a MyProxy OAuth account credential</span></span></h2>
 
 <p><em>POST /users/username/credentials/oauth</em></p>
 
@@ -228,7 +228,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfuly start the OAuth Dance with a MyProxy server</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
         "username": "username", 
         "alias": "My OAuth", 
         "server": "grid.ci.uchicago.edu"
@@ -237,7 +237,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <hr />
 
-<h2 id="Register-a-standard-MyProxy-account-credential"><span class="method name"><span class="name">Register a standard MyProxy account credential</span></span></h2>
+<h2 id="Register"><span class="method name"><span class="name">Register a standard MyProxy account credential</span></span></h2>
 
 <p><em>POST /users/username/credentials/myproxy</em></p>
 
@@ -245,7 +245,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully create a MyProxy Credential</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
         "username": "username", 
         "alias": "My MyProxy account", 
         "password": "password", 
@@ -255,7 +255,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <hr />
 
-<h2 id="List-Credentials"><span class="method name"><span class="name">List Credentials</span></span></h2>
+<h2 id="List"><span class="method name"><span class="name">List Credentials</span></span></h2>
 
 <p><em>POST /users/username/credentials</em></p>
 
@@ -263,7 +263,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>List credentials for user</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials
 </code></pre>
 
 <hr />
@@ -272,7 +272,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <p>Manage groups.</p>
 
-<h2 id="List-Groups"><span class="method name"><span class="name">List Groups</span></span></h2>
+<h2 id="List"><span class="method name"><span class="name">List Groups</span></span></h2>
 
 <p><em>GET /groups/list</em></p>
 
@@ -280,7 +280,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Get a list of groups 1 deep</h4>
 
-<pre class="shell"><code>curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/list?depth=1
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/list?depth=1
 </code></pre>
 
 <hr />
@@ -289,7 +289,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <p>Manage a specific group. The url for all groups is defined in the results of the group list.  It will follow the pattern /groups/&lt;groupid&gt; but the groupid is, at the moment, an opaque identifier.  Similarly, the urls for subresources of a group are defined by the group summary.  They will follow the same pattern of using the groupid as the identifier.</p>
 
-<h2 id="List-group-members"><span class="method name"><span class="name">List group members</span></span></h2>
+<h2 id="List"><span class="method name"><span class="name">List group members</span></span></h2>
 
 <p><em>GET /groups/&lt;groupid&gt;/members</em></p>
 
@@ -297,12 +297,12 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve the list of members in a group.</h4>
 
-<pre class="shell"><code>curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members
 </code></pre>
 
 <hr />
 
-<h2 id="Invite-member-to-group"><span class="method name"><span class="name">Invite member to group</span></span></h2>
+<h2 id="Invite"><span class="method name"><span class="name">Invite member to group</span></span></h2>
 
 <p><em>POST /groups/&lt;groupid&gt;/members</em></p>
 
@@ -310,7 +310,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Invite someone to join a group via email address (Likely someone without an account)</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
         "emails": [
             "user1@no-reply.com", 
             "user2@no-reply.com"
@@ -322,7 +322,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Invite someone to join a group by username</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
         "users": [
             "user1", 
             "user2"
@@ -332,7 +332,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <hr />
 
-<h2 id="List-policies-for-group"><span class="method name"><span class="name">List policies for group</span></span></h2>
+<h2 id="List"><span class="method name"><span class="name">List policies for group</span></span></h2>
 
 <p><em>GET /groups/&lt;groupid&gt;/policies</em></p>
 
@@ -340,12 +340,12 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve policy list</h4>
 
-<pre class="shell"><code>curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/policies
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/policies
 </code></pre>
 
 <hr />
 
-<h2 id="List-messages-or-events-for-a-group"><span class="method name"><span class="name">List messages or events for a group</span></span></h2>
+<h2 id="List"><span class="method name"><span class="name">List messages or events for a group</span></span></h2>
 
 <p><em>GET /groups/&lt;groupid&gt;/messages</em></p>
 
@@ -353,12 +353,12 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve a message list</h4>
 
-<pre class="shell"><code>curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/messages
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/messages
 </code></pre>
 
 <hr />
 
-<h2 id="List-email-templates-for-a-group"><span class="method name"><span class="name">List email templates for a group</span></span></h2>
+<h2 id="List"><span class="method name"><span class="name">List email templates for a group</span></span></h2>
 
 <p><em>GET /groups/&lt;groupid&gt;/email_templates</em></p>
 
@@ -366,12 +366,12 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully list email templates</h4>
 
-<pre class="shell"><code>curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/email_templates
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/email_templates
 </code></pre>
 
 <hr />
 
-<h2 id="Create-group"><span class="method name"><span class="name">Create group</span></span></h2>
+<h2 id="Create"><span class="method name"><span class="name">Create group</span></span></h2>
 
 <p><em>POST /groups</em></p>
 
@@ -379,7 +379,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Create a subgroup</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups -d '{
         "is_active": true, 
         "name": "My new group", 
         "parent": "34951220-ad51-407d-8502-f83168834ece", 
@@ -391,7 +391,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Create a new root group</h4>
 
-<pre class="shell"><code>curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups -d '{
         "is_active": true, 
         "name": "New root Group", 
         "description": "Demonstrate creating a root group"
