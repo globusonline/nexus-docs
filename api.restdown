@@ -18,7 +18,7 @@ If the community context is not set, the request will be made in the default Glo
 
 
 
-### All API calls start with
+### All API should be made to
 
 `https://nexus.api.globusonline.org`
 

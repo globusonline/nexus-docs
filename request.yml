@@ -16,7 +16,7 @@ header:
 
 notes:
   -
-    title: All API calls start with 
+    title: All API should be made to 
     content: |
       `https://nexus.api.globusonline.org`
   -
