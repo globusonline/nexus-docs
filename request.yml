@@ -18,7 +18,7 @@ notes:
   -
     title: All API calls start with 
     content: |
-      `https://graph.api.globusonline.org`
+      `https://nexus.api.globusonline.org`
   -
     title: Format
     content: All responses are **JSON** (that is, except for the current HTML docs that you are reading).

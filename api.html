@@ -63,7 +63,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h3>All API calls start with</h3>
 
-<p><code>https://graph.api.globusonline.org</code></p>
+<p><code>https://nexus.api.globusonline.org</code></p>
 
 <h3>Format</h3>
 
@@ -83,7 +83,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>None</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users -d '{
         "username": "username", 
         "accept_terms": true, 
         "opt_in": true, 
@@ -97,7 +97,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Unsuccessfully create user with duplicate username</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users -d '{
         "username": "username", 
         "accept_terms": true, 
         "opt_in": true, 
@@ -117,14 +117,14 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve a user</h4>
 
-<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username
 </code></pre>
 
 <hr />
 
 <h4>Request nonexistant user.</h4>
 
-<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username
 </code></pre>
 
 <hr />
@@ -137,7 +137,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully update a user profile.</h4>
 
-<pre><code>$ curl -X PUT -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username -d '{
+<pre><code>$ curl -X PUT -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username -d '{
         "fullname": "New Name"
     }'
 </code></pre>
@@ -152,7 +152,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully change password</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username -d '{
         "password1": "NewPassword", 
         "password2": "NewPassword", 
         "currentpassword": "ChangeMe"
@@ -169,7 +169,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully delete user</h4>
 
-<pre><code>$ curl -X DELETE -H "Content-Type: application/json" https://graph.api.globusonline.org/user/username
+<pre><code>$ curl -X DELETE -H "Content-Type: application/json" https://nexus.api.globusonline.org/user/username
 </code></pre>
 
 <hr />
@@ -196,7 +196,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully create an SSH credential for a user</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/ssh2 -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username/credentials/ssh2 -d '{
         "alias": "My SSH Credential", 
         "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfsbK35x9W3fH/bZ/AJC0mq93DC7ulCleDeQoCsYHWWbLLDtWnlkpHCjXwK1zV7ECYh2FioUs/Dw38+Cj3H+T0EG2ZZrsG6LQOOOLMnAeOic0dD5KmkqJxsMXF1q+vuI1/DKH4qv3ijELduKyqnm/TvXaed+ibrKnM+BWNb0/e2ZmvWZxlBtPC5vpn6VRXDVKbxbwK+X/VRfYyyh0UZcsPoVs99xeHOPZ8c9xCK3Gx9Djp78IWXFcEuuz29wWb/3LEwq7btvA8GC+qNDa+Sh3Co2ikvfoa8g0jVEr58aqE6IwD9NMEoIcK/rDvdoyP39mTBKqHYBQRJ+JOzX9KyViB comment"
     }'
@@ -212,7 +212,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully create an X.509 credential for a user</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/x509 -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username/credentials/x509 -d '{
         "alias": "My X.509", 
         "certificate": "-----BEGIN CERTIFICATE-----\nMIICejCCAeOgAwIBAgIBCTANBgkqhkiG9w0BAQUFADBJMQswCQYDVQQGEwJVUzEa\nMBgGA1UEChMRR2xvYnVzIENvbnNvcnRpdW0xHjAcBgNVBAMTFUNlcnRpZmljYXRl\nIEF1dGhvcml0eTAeFw0xMTAyMjQxOTU0MjBaFw0xMjAyMjQxOTU0MjBaMEAxCzAJ\nBgNVBAYTAlVTMRowGAYDVQQKExFHbG9idXMgQ29uc29ydGl1bTEVMBMGA1UEAxMM\nSkdsb2J1cyB0ZXN0MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC/lJGJInNL\n8EtkxNpkiSzAYDHgnEdopx7t7oyzAFIZ/wUXm2EL10M3maj/RaB+9buqmcSxMBp3\nnRJT72GO0MkxAYp20MSiDmDoTOQOwj4drt1plfYgDVfGp6NZdzaYGuu9FCIp8rNA\n9r45yE71rq7C/pgZkMgk231ICtJPWCAriwIDAQABo3sweTAJBgNVHRMEAjAAMCwG\nCWCGSAGG+EIBDQQfFh1PcGVuU1NMIEdlbmVyYXRlZCBDZXJ0aWZpY2F0ZTAdBgNV\nHQ4EFgQUeyIZsiXmtX/rBWJe1q2d1YkLZYQwHwYDVR0jBBgwFoAUeLGfYCEMWUsK\nTXr/aUeO0l3bGVYwDQYJKoZIhvcNAQEFBQADgYEA0xLD3WI14KnbUkD1kag0/vFk\n/RIYVEfGQEBQRAg9u48+5VixO5yPG8YCNODMAAMfBvmVBv1cuCszlLllDxVT96VM\nL3IjT582oYzQbk1DaDvGwNmQ1RTah6o/+CSOeRZ4Jr4h2p2CaTbMF2gwg+KLx8Pc\nPHNCl/fPxmu/1EYUBHo=\n-----END CERTIFICATE-----\n"
     }'
@@ -228,7 +228,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfuly start the OAuth Dance with a MyProxy server</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/oauth -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username/credentials/oauth -d '{
         "username": "username", 
         "alias": "My OAuth", 
         "server": "grid.ci.uchicago.edu"
@@ -245,7 +245,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully create a MyProxy Credential</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials/myproxy -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username/credentials/myproxy -d '{
         "username": "username", 
         "alias": "My MyProxy account", 
         "password": "password", 
@@ -263,7 +263,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>List credentials for user</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/users/username/credentials
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/users/username/credentials
 </code></pre>
 
 <hr />
@@ -280,7 +280,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Get a list of groups 1 deep</h4>
 
-<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/list?depth=1
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups/list?depth=1
 </code></pre>
 
 <hr />
@@ -297,7 +297,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve the list of members in a group.</h4>
 
-<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members
 </code></pre>
 
 <hr />
@@ -310,7 +310,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Invite someone to join a group via email address (Likely someone without an account)</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
         "emails": [
             "user1@no-reply.com", 
             "user2@no-reply.com"
@@ -322,7 +322,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Invite someone to join a group by username</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/members -d '{
         "users": [
             "user1", 
             "user2"
@@ -340,7 +340,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve policy list</h4>
 
-<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/policies
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/policies
 </code></pre>
 
 <hr />
@@ -353,7 +353,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully retrieve a message list</h4>
 
-<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/messages
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/messages
 </code></pre>
 
 <hr />
@@ -366,7 +366,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Successfully list email templates</h4>
 
-<pre><code>$ curl -X GET -H "Content-Type: application/json" https://graph.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/email_templates
+<pre><code>$ curl -X GET -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups/34951220-ad51-407d-8502-f83168834ece/email_templates
 </code></pre>
 
 <hr />
@@ -379,7 +379,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Create a subgroup</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups -d '{
         "is_active": true, 
         "name": "My new group", 
         "parent": "34951220-ad51-407d-8502-f83168834ece", 
@@ -391,7 +391,7 @@ The community name is set using the X-Go-Community-Context header.</p>
 
 <h4>Create a new root group</h4>
 
-<pre><code>$ curl -X POST -H "Content-Type: application/json" https://graph.api.globusonline.org/groups -d '{
+<pre><code>$ curl -X POST -H "Content-Type: application/json" https://nexus.api.globusonline.org/groups -d '{
         "is_active": true, 
         "name": "New root Group", 
         "description": "Demonstrate creating a root group"

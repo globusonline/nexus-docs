@@ -7,7 +7,7 @@ with open('request.yml', 'r') as f:
 
 def build_curl(method, path, query, body):
     curl_base = '$ curl -X {0} -H "Content-Type: application/json"'.format(method)
-    curl_base = '{0} https://graph.api.globusonline.org{1}'.format(curl_base,
+    curl_base = '{0} https://nexus.api.globusonline.org{1}'.format(curl_base,
             path)
     if query is not None:
         query_string = '&'.join(['{0}={1}'.format(key, value) for key, value in
